@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✈️ SI Analytics 30-Day Challenge — Day 9: Flight Reservation Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #f0fdf4;
+      border-left: 5px solid #0f766e;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .goldbox {
+      background-color: #fefce8;
+      border-left: 5px solid #facc15;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✈️ SI Analytics 30-Day Data Visualization Challenge — Day 9</h1>
+    <p><strong>Flight Reservation Dataset: Airline Pricing & Travel Time Dashboard</strong><br/>
+      📁 Dataset: <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/flights.csv" target="_blank">flights.csv</a>
+    </p>
+
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>“flights.csv”</strong> — contains flight information from multiple airlines and routes across India.  
+      It includes details such as airline name, travel date, source and destination cities, departure time, duration, total stops, and ticket price.
+    </p>
+    <p>
+      This dataset provides an excellent opportunity to analyze <strong>airline pricing trends</strong>, <strong>travel durations</strong>, 
+      and <strong>service differences</strong> — key for business intelligence, travel analytics, and operations optimization.
+    </p>
+
+    <div class="highlight">
+      📄 <strong>Dataset name:</strong> flights.csv<br/>
+      📍 <strong>Source:</strong> SI Analytics GitHub Repository
+    </div>
+
+    <h2>🔑 Key Variables</h2>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>Airline</td><td>Name of the airline (e.g., Air India, IndiGo, Jet Airways)</td></tr>
+      <tr><td>Date_of_Journey</td><td>Flight date</td></tr>
+      <tr><td>Source</td><td>Departure city</td></tr>
+      <tr><td>Destination</td><td>Arrival city</td></tr>
+      <tr><td>Dep_Time</td><td>Scheduled departure time</td></tr>
+      <tr><td>Duration</td><td>Total flight duration (e.g., 2h 50m)</td></tr>
+      <tr><td>Total_Stops</td><td>Number of stops (e.g., 1 stop, non-stop)</td></tr>
+      <tr><td>Additional_Info</td><td>Layover or flight info (e.g., 1 Long layover)</td></tr>
+      <tr><td>Price</td><td>Flight ticket price (in INR)</td></tr>
+    </table>
+
+    <h2>🎯 Daily Task Objective</h2>
+    <p>Build a <strong>Flight Reservation Dashboard</strong> that answers:</p>
+    <div class="goldbox">
+      💡 <strong>Core Question:</strong>  
+      “How do flight prices and durations vary across airlines, routes, and total stops?”
+    </div>
+    <p>
+      Your goal is to visualize patterns that help travelers or analysts identify the best flight deals and performance differences between airlines.
+    </p>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Explore the Data</strong><br/>
+        • <strong>R:</strong> <code>read_csv("flights.csv")</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv("flights.csv")</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Text/CSV → Select the file or paste the GitHub link<br/>
+        Inspect columns such as <code>Airline</code>, <code>Source</code>, <code>Destination</code>, and <code>Price</code>.  
+        Clean text fields (remove extra spaces, standardize airline names).  
+        Convert <code>Duration</code> to total minutes for analysis.
+      </li>
+
+      <li><strong>Clean and Prepare</strong><br/>
+        • Extract hour or day from <code>Dep_Time</code> for temporal insights.<br/>
+        • Create derived fields:
+        <ul>
+          <li>⏱️ <strong>Duration (minutes)</strong> – convert “2h 30m” to numeric</li>
+          <li>💰 <strong>Average Price per Airline</strong> – mean of Price by Airline</li>
+          <li>✈️ <strong>Flights per Route</strong> – count of flights by Source–Destination</li>
+        </ul>
+        • Handle “non-stop” and “1 stop” consistently for comparisons.
+      </li>
+
+      <li><strong>Build Your Dashboard</strong><br/>
+        Use <strong>R, Python, or Power BI</strong> to create visuals such as:
+        <ul>
+          <li>✈️ Bar Chart: Average flight price by airline</li>
+          <li>🕒 Column Chart: Average duration by airline or total stops</li>
+          <li>🌆 Matrix/Map: Route frequency (Source → Destination)</li>
+          <li>💰 Scatter Plot: Price vs Duration (colored by airline)</li>
+          <li>📊 Donut Chart: Flight distribution by number of stops</li>
+        </ul>
+        <div class="highlight">
+          💡 <strong>Power BI Tip:</strong> Add filters for “Airline” and “Source City.”<br/>
+          💡 <strong>R/Python Tip:</strong> Use color palettes (teal → gold → orange) for clarity and consistency.
+        </div>
+      </li>
+
+      <li><strong>Add Summary KPI Cards</strong><br/>
+        Include:
+        <ul>
+          <li>💸 Average Flight Price</li>
+          <li>🕓 Average Duration (hours)</li>
+          <li>✈️ Total Number of Flights</li>
+          <li>🛫 % of Non-stop Flights</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <ol>
+      <li>Share your dashboard or screenshot on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Use hashtags: 
+        <strong>#SIAnalytics30DayChallenge #DataVisualization #AirlineAnalytics #RStats #Python #PowerBI #TravelData #AnalyticsForImpact</strong>
+      </li>
+    </ol>
+    <p>
+      💾 <strong>Hosting Suggestions:</strong><br/>
+      • <strong>R/Python:</strong> Publish via Quarto or GitHub Pages.<br/>
+      • <strong>Power BI:</strong> Publish to Power BI Service or export as PNG/PDF for LinkedIn.
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your <strong>Day 9 dashboard</strong> by <strong>11:59 PM (local time)</strong> today.<br/>
+      ✅ Review and comment on <strong>10 other participants’ dashboards</strong> — mention one visual or insight that stood out.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="goldbox">
+      “Day 9 of the #SIAnalytics30DayChallenge ✈️<br/>
+      Built a dashboard analyzing flight prices, routes, and durations from Indian airlines.<br/>
+      Jet Airways had the longest average duration, while IndiGo offered the most non-stop routes!<br/>
+      #RStats #Python #PowerBI #DataVisualization #AirlineAnalytics @SIAnalyticsLab @SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
