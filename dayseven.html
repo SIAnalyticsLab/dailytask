@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💳 SI Analytics 30-Day Challenge — Day 7: Loan Portfolio Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #f0fdf4;
+      border-left: 5px solid #0f766e;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .goldbox {
+      background-color: #fefce8;
+      border-left: 5px solid #facc15;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💳 SI Analytics 30-Day Data Visualization Challenge — Day 7</h1>
+    <p><strong>Loan Portfolio Risk and Repayment Patterns</strong><br/>
+      📁 Dataset: <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/loans_full_schema.csv" target="_blank">loans_full_schema.csv</a>
+    </p>
+
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>“loans_full_schema.csv”</strong> — is adapted from Lending Club’s public lending data.  
+      It contains detailed records on personal and business loans, including borrower demographics, credit histories, 
+      income verification, and repayment performance.
+    </p>
+    <p>
+      The goal is to analyze how borrower characteristics relate to loan grade, interest rate, and repayment success — 
+      key skills in <strong>financial risk analytics</strong>.
+    </p>
+
+    <div class="highlight">
+      📄 <strong>Dataset name:</strong> loans_full_schema.csv<br/>
+      📍 <strong>Source:</strong> SI Analytics GitHub Repository
+    </div>
+
+    <h2>🔑 Key Variables</h2>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>emp_title, emp_length, state, homeownership</td><td>Borrower profile</td></tr>
+      <tr><td>annual_income, verified_income, debt_to_income</td><td>Income and debt ratio</td></tr>
+      <tr><td>loan_amount, term, interest_rate, installment</td><td>Loan characteristics</td></tr>
+      <tr><td>grade, sub_grade</td><td>Credit risk classification (A–G)</td></tr>
+      <tr><td>loan_purpose, application_type</td><td>Reason and type of loan</td></tr>
+      <tr><td>loan_status</td><td>Current status (e.g., Current, Fully Paid, Late)</td></tr>
+      <tr><td>balance, paid_principal, paid_interest</td><td>Repayment progress</td></tr>
+      <tr><td>issue_month</td><td>Loan origination date</td></tr>
+      <tr><td>account_never_delinq_percent, public_record_bankrupt</td><td>Creditworthiness indicators</td></tr>
+    </table>
+
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Build a <strong>Loan Portfolio Dashboard</strong> that answers:
+    </p>
+    <div class="goldbox">
+      💡 <strong>Core Question:</strong>  
+      “What factors influence loan repayment performance and interest rates?”
+    </div>
+    <p>
+      You’ll analyze how borrower risk, income verification, and loan grade impact repayment — 
+      and identify which loan purposes carry higher default risk.
+    </p>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Explore the Dataset</strong><br/>
+        • <strong>R:</strong> <code>read_csv("loans_full_schema.csv")</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv("loans_full_schema.csv")</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Text/CSV → Select the file<br/>
+        Inspect missing values and confirm data types for numeric columns such as <code>annual_income</code>, 
+        <code>interest_rate</code>, and <code>loan_amount</code>.
+      </li>
+
+      <li><strong>Clean and Prepare the Data</strong><br/>
+        • Create derived metrics:
+        <ul>
+          <li>🏦 <strong>Loan-to-Income Ratio</strong> = loan_amount ÷ annual_income</li>
+          <li>💰 <strong>Interest Burden Index</strong> = interest_rate × debt_to_income</li>
+          <li>📈 <strong>Repayment Ratio</strong> = paid_principal ÷ loan_amount</li>
+        </ul>
+        • Filter for relevant statuses (e.g., Current, Fully Paid, Charged Off).<br/>
+        • Group or summarize by loan grade, state, or homeownership type.
+      </li>
+
+      <li><strong>Build Your Dashboard</strong><br/>
+        Use <strong>R, Python, or Power BI</strong> to visualize:
+        <ul>
+          <li>📊 Bar Chart: Average interest rate by loan grade (A–G)</li>
+          <li>💵 Pie Chart: Distribution of loan purposes (debt consolidation, home improvement, etc.)</li>
+          <li>📈 Scatter Plot: Loan amount vs. interest rate (colored by grade)</li>
+          <li>🧭 Stacked Column Chart: Loan status by application type (individual vs. joint)</li>
+          <li>📆 Line Chart: Monthly loan issuance trends by grade (issue_month)</li>
+        </ul>
+        <div class="highlight">
+          💡 <strong>Optional (Advanced):</strong> Add slicers or filters for <code>loan_status</code> or <code>state</code> 
+          to make your dashboard interactive.
+        </div>
+      </li>
+
+      <li><strong>Add Key Performance Cards</strong><br/>
+        Display 3–4 summary metrics such as:
+        <ul>
+          <li>🏠 Average Loan Amount</li>
+          <li>💳 Average Interest Rate</li>
+          <li>💰 Total Loans Fully Paid</li>
+          <li>⚠️ % of Loans in Default or Late</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <ol>
+      <li>Share your visualization on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Use hashtags: 
+        <strong>#SIAnalytics30DayChallenge #FinanceAnalytics #CreditRisk #DataVisualization #Python #RStats #PowerBI</strong>
+      </li>
+    </ol>
+    <p>
+      💾 <strong>Hosting Suggestions:</strong><br/>
+      • <strong>R/Python:</strong> Render via Quarto Dashboard and publish on GitHub Pages.<br/>
+      • <strong>Power BI:</strong> Publish to Power BI Service or export to image/PDF for LinkedIn.
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your <strong>Day 7 dashboard</strong> by <strong>11:59 PM (local time)</strong> today.<br/>
+      ✅ Review and leave feedback on <strong>10 other participants’ dashboards</strong> — highlight insights or design choices that stood out.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="goldbox">
+      “Day 7 of the #SIAnalytics30DayChallenge 💳<br/>
+      Analyzed 1,000+ loan records to identify repayment risk and interest rate patterns.<br/>
+      Higher debt-to-income ratios and lower credit grades corresponded to higher default risk.<br/>
+      Built using Power BI — finance meets storytelling!<br/>
+      #RStats #Python #PowerBI #DataVisualization #FinanceAnalytics @SIAnalyticsLab @SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
