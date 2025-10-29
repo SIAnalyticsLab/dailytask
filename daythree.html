@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌍 SI Analytics 30-Day Challenge — Day 3: Pediatric HIV Survey Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #f0fdf4;
+      border-left: 5px solid #0f766e;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .goldbox {
+      background-color: #fefce8;
+      border-left: 5px solid #facc15;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 SI Analytics 30-Day Data Visualization Challenge — Day 3</h1>
+    <p><strong>Pediatric HIV Survey — Yaoundé, Cameroon (2021)</strong><br/>
+      📁 Dataset: 
+      <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/yaounde_ped_hiv_survey.csv" target="_blank">
+      yaounde_ped_hiv_survey.csv</a>
+    </p>
+
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset comes from a <strong>pediatric HIV care survey</strong> conducted at a hospital in 
+      <strong>Yaoundé, Cameroon</strong>, between July and August 2021.
+      It includes information from children aged 0–5 years who attended the HIV care unit during routine visits.
+    </p>
+    <p>
+      The survey recorded each child’s sex, health area, disease symptoms, feeding mode, 
+      vitamin A supplementation, ARV regimen, and water container hygiene frequency.
+    </p>
+
+    <div class="highlight">
+      📄 <strong>Dataset name:</strong> yaounde_ped_hiv_survey.csv
+      <br/><br/>
+      <strong>Key variables:</strong>
+      <table>
+        <tr><th>Variable</th><th>Description</th></tr>
+        <tr><td>order_number</td><td>Unique record ID</td></tr>
+        <tr><td>sex</td><td>Child’s gender (m/f)</td></tr>
+        <tr><td>health_area_name</td><td>Health area within Yaoundé</td></tr>
+        <tr><td>zone_num</td><td>Numeric zone identifier</td></tr>
+        <tr><td>visit_day / visit_month</td><td>Date of visit</td></tr>
+        <tr><td>disease_past_month</td><td>Disease(s) reported in the past month</td></tr>
+        <tr><td>vitamin_a_received</td><td>Yes/No</td></tr>
+        <tr><td>feeding_mode</td><td>Exclusive, Mixed, or Other</td></tr>
+        <tr><td>water_container_washing_freq</td><td>e.g., “Before each refill”, “Never”</td></tr>
+        <tr><td>arv_treatment</td><td>Antiretroviral regimen (e.g., TDF+3TC+EFV)</td></tr>
+      </table>
+    </div>
+
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Build a simple health insights dashboard showing patterns of common childhood illnesses 
+      and care practices among HIV-exposed children.
+    </p>
+    <div class="goldbox">
+      💡 <strong>Core Question:</strong> 
+      “What are the most common illnesses and care patterns among children receiving pediatric HIV care in Yaoundé?”
+    </div>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Explore the Dataset</strong><br/>
+        • <strong>R:</strong> <code>read_csv("yaounde_ped_hiv_survey.csv")</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv("yaounde_ped_hiv_survey.csv")</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Text/CSV → Select the file<br/>
+        Inspect the dataset and check for missing values or inconsistencies (e.g., disease name capitalization).
+      </li>
+
+      <li><strong>Prepare and Summarize the Data</strong><br/>
+        Create summaries to capture:
+        <ul>
+          <li>Frequency of diseases reported (<code>disease_past_month</code>)</li>
+          <li>Proportion of children who received Vitamin A</li>
+          <li>Distribution of feeding modes</li>
+          <li>Distribution of ARV regimens</li>
+          <li>Water hygiene practices across health areas</li>
+        </ul>
+        💡 Optional: Group results by <code>health_area_name</code> to explore local differences.
+      </li>
+
+      <li><strong>Build Your Dashboard</strong><br/>
+        Use your preferred tool (<strong>R, Python, or Power BI</strong>) to visualize:
+        <ul>
+          <li>📊 Bar chart: Top 5 diseases reported</li>
+          <li>🧮 Donut chart or KPI card: % of children who received Vitamin A</li>
+          <li>🍽️ Pie chart: Distribution of feeding modes</li>
+          <li>💊 Stacked bar chart: ARV regimen distribution by sex or health area</li>
+          <li>💧 Horizontal bar chart: Water container washing frequency</li>
+        </ul>
+        💡 Include clear titles, consistent colors, and readable labels.
+      </li>
+
+      <li><strong>Add Key Insight Cards (Optional)</strong><br/>
+        Use value boxes or summary text to display:
+        <ul>
+          <li>Total number of children surveyed</li>
+          <li>% receiving Vitamin A</li>
+          <li>Most frequent disease</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <ol>
+      <li>Share your visualization on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Use hashtags: 
+        <strong>#SIAnalytics30DayChallenge #DataVisualization #RStats #Python #PowerBI #HIVAnalytics #PublicHealthData</strong>
+      </li>
+    </ol>
+    <p>
+      💾 <strong>Hosting Suggestions:</strong><br/>
+      • <strong>R/Python:</strong> Publish via Quarto or GitHub Pages<br/>
+      • <strong>Power BI:</strong> Publish to Power BI Service and share a screenshot or link
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your <strong>Day 3 dashboard</strong> by <strong>11:59 PM (your local time)</strong> today.<br/>
+      Then, provide constructive feedback on at least <strong>10 other participants’ posts</strong> — 
+      mention one insight or design idea you liked.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="goldbox">
+      “Day 3 of the #SIAnalytics30DayChallenge ✅<br/>
+      Explored pediatric HIV survey data from Yaoundé, Cameroon.<br/>
+      Most common illness: Cough, and 70% of children received Vitamin A!<br/>
+      Visualized using Power BI 🎨<br/>
+      #DataForHealth #RStats #Python #PowerBI #SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
