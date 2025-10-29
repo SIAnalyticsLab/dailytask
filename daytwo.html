@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📊 SI Analytics 30-Day Challenge — Daily Task 2: Sales Performance Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #fefce8;
+      border-left: 5px solid #facc15;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 SI Analytics 30-Day Data Visualization Challenge — Daily Task 2</h1>
+
+    <h2>🧩 Background</h2>
+    <p>
+      You’ve received a sample <strong>Sales Orders Dataset</strong> 
+      (<a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/Sales_Orders.xlsx" target="_blank">
+      Sales_Orders.xlsx</a>), representing a tech retail and wholesale company selling products such as 
+      robot kits, drone kits, eBooks, blueprints, and training videos across multiple U.S. states.
+    </p>
+    <div class="highlight">
+      <strong>Each record includes:</strong><br/>
+      • <em>Order details:</em> OrderNum, OrderDate, OrderType, CustomerType, CustName, CustState<br/>
+      • <em>Product details:</em> ProdCategory, ProdNumber, ProdName<br/>
+      • <em>Sales metrics:</em> Quantity, Price, Discount, and Order Total
+    </div>
+    <p>Your goal is to explore this data, derive insights, and build an engaging dashboard using R, Python, or Power BI.</p>
+
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Create and share one visual dashboard that answers this core question:<br/>
+      💡 <strong>“What are the top-performing product categories and customer types driving sales performance?”</strong>
+    </p>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Explore the Data</strong><br/>
+        • <strong>R:</strong> <code>read.csv()</code> or <code>readr::read_csv()</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv()</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Text/CSV<br/>
+        Inspect the fields, handle any currency symbols, and ensure numeric columns are correctly formatted.
+      </li>
+
+      <li><strong>Calculate Key Metrics</strong><br/>
+        Create summary measures such as:<br/>
+        • <strong>Total Sales</strong> = sum of Order Total<br/>
+        • <strong>Average Discount</strong> per category or customer type<br/>
+        • <strong>Total Quantity Sold</strong>
+      </li>
+
+      <li><strong>Build Your Dashboard</strong><br/>
+        Use any of the three tools to visualize:
+        <ul>
+          <li>🧱 Total Sales by Product Category (bar or column chart)</li>
+          <li>🧭 Sales by Customer Type (Business vs Individual)</li>
+          <li>📆 Sales Trend by Order Date</li>
+          <li>🗺️ Sales Distribution by State</li>
+        </ul>
+        <div class="highlight">
+          💡 <strong>Tip:</strong> Include value boxes or KPI cards for “Total Sales” and “Total Orders.”
+        </div>
+      </li>
+
+      <li><strong>Add Basic Design Features</strong><br/>
+        • Apply your preferred color palette and clean layout.<br/>
+        • Label axes clearly and give each visual a meaningful title.<br/>
+        • <em>In R/Python:</em> render as a Quarto dashboard.<br/>
+        • <em>In Power BI:</em> use a single-page report layout.
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When finished, post your visual or dashboard link on your favorite platform:</p>
+    <ul>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong></li>
+      <li>Always include the hashtag <strong>#SIAnalytics30DayChallenge</strong></li>
+    </ul>
+
+    <p>
+      💾 <strong>Hosting Options:</strong><br/>
+      • <strong>R / Python:</strong> Host on GitHub Pages or share the GitHub repo link.<br/>
+      • <strong>Power BI:</strong> Export as an image or publish to Power BI Service and share the URL.
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your visual by <strong>11:59 PM (local time)</strong> today.<br/>
+      👏 Engage with at least <strong>10 other participants’ posts</strong> — leave a short, constructive comment highlighting what you learned or appreciated.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="highlight">
+      “Day 2 of the #SIAnalytics30DayChallenge ✅<br/>
+      Built my dashboard analyzing top-selling product categories and customer types.<br/>
+      Excited to see what everyone else creates!<br/>
+      #DataVisualization #PowerBI #RStats #Python #AnalyticsForImpact @SIAnalyticsLab @SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
