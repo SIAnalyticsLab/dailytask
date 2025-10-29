@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🏃‍♀️ SI Analytics 30-Day Challenge — Day 8: Physical Activity Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #f0fdf4;
+      border-left: 5px solid #0f766e;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .goldbox {
+      background-color: #fefce8;
+      border-left: 5px solid #facc15;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏃‍♀️ SI Analytics 30-Day Data Visualization Challenge — Day 8</h1>
+    <p><strong>Physical Activity and Sedentary Behavior Survey</strong><br/>
+      📁 Dataset: <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/physical_activity.csv" target="_blank">physical_activity.csv</a>
+    </p>
+
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>“physical_activity.csv”</strong> — captures daily physical activity and sedentary behavior patterns 
+      from adults and children in different households.  
+      The data comes from an observational study designed to understand how lifestyle behaviors 
+      (sitting time, light activity, and moderate-to-vigorous activity) relate to 
+      <strong>Body Mass Index (BMI)</strong> and adherence to 
+      <strong>World Health Organization (WHO) physical activity recommendations.</strong>
+    </p>
+    <div class="highlight">
+      📄 <strong>Dataset name:</strong> physical_activity.csv<br/>
+      📍 <strong>Source:</strong> SI Analytics GitHub Repository
+    </div>
+
+    <h2>🔑 Key Variables</h2>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>personal_id, household_id</td><td>Participant and household identifiers</td></tr>
+      <tr><td>sex</td><td>Gender (M = Male, F = Female)</td></tr>
+      <tr><td>status</td><td>Age group (Adulte or Enfant)</td></tr>
+      <tr><td>bmi</td><td>Body Mass Index (kg/m²)</td></tr>
+      <tr><td>sedentary_ap_s_day</td><td>Average sedentary activity per day (seconds/day)</td></tr>
+      <tr><td>light_ap_s_day</td><td>Average light activity per day (seconds/day)</td></tr>
+      <tr><td>mvpa_s_day</td><td>Moderate-to-vigorous physical activity (seconds/day)</td></tr>
+      <tr><td>oms_recommendation</td><td>Whether participant meets WHO physical activity recommendation (Yes/No)</td></tr>
+    </table>
+
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Build a <strong>Physical Activity Dashboard</strong> that answers:
+    </p>
+    <div class="goldbox">
+      💡 <strong>Core Question:</strong>  
+      “How do daily activity patterns differ by age group, sex, and BMI — and who meets WHO physical activity targets?”
+    </div>
+    <p>
+      You will visualize and interpret trends linking sedentary time, active minutes, and BMI to highlight health behavior differences.
+    </p>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Explore the Dataset</strong><br/>
+        • <strong>R:</strong> <code>read_csv("physical_activity.csv")</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv("physical_activity.csv")</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Text/CSV → Select the file<br/>
+        Inspect missing values (e.g., <code>bmi</code>, <code>mvpa_s_day</code>) and remove or impute as needed for clarity.
+      </li>
+
+      <li><strong>Prepare and Summarize the Data</strong><br/>
+        • Convert seconds/day to minutes/day:
+        <ul>
+          <li><code>mvpa_min_day = mvpa_s_day / 60</code></li>
+          <li><code>sedentary_min_day = sedentary_ap_s_day / 60</code></li>
+        </ul>
+        • Group data by:
+        <ul>
+          <li>Status (Adult vs Enfant)</li>
+          <li>Sex (M/F)</li>
+          <li>OMS recommendation (Yes/No)</li>
+        </ul>
+        • Calculate:
+        <ul>
+          <li>Average BMI, sedentary time, and MVPA minutes/day for each group.</li>
+          <li>% meeting WHO recommendations by sex or age group.</li>
+        </ul>
+      </li>
+
+      <li><strong>Build Your Dashboard</strong><br/>
+        Use <strong>R, Python, or Power BI</strong> to visualize your findings:
+        <ul>
+          <li>📊 Bar Chart: Average MVPA (minutes/day) by age group and sex</li>
+          <li>🧘 Stacked Bar Chart: Proportion meeting WHO recommendations (Yes/No) by age group</li>
+          <li>🕒 Column Chart: Sedentary vs. Light activity (minutes/day) by group</li>
+          <li>⚖️ Scatter Plot: BMI vs. MVPA (colored by WHO recommendation status)</li>
+          <li>📈 Box Plot: Distribution of MVPA or Sedentary time across sexes</li>
+        </ul>
+        <div class="highlight">
+          💡 <strong>Power BI Tip:</strong> Add data labels and slicers for “sex” and “status.”<br/>
+          💡 <strong>R/Python Tip:</strong> Use color gradients (e.g., teal → orange) to highlight “Yes” vs “No” for WHO adherence.
+        </div>
+      </li>
+
+      <li><strong>Add Key Insight Cards</strong><br/>
+        Include a few high-level metrics:
+        <ul>
+          <li>🧍 Average BMI of adults and children</li>
+          <li>⏱️ Average sedentary time (hours/day)</li>
+          <li>🏃 % of participants meeting WHO recommendation</li>
+          <li>👩‍👧 Number of children vs adults surveyed</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <ol>
+      <li>Share your dashboard or visualization on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags: 
+        <strong>#SIAnalytics30DayChallenge #DataVisualization #PublicHealth #RStats #Python #PowerBI #PhysicalActivity #DataForHealth</strong>
+      </li>
+    </ol>
+    <p>
+      💾 <strong>Hosting Suggestions:</strong><br/>
+      • <strong>R/Python:</strong> Publish via Quarto Dashboard or GitHub Pages.<br/>
+      • <strong>Power BI:</strong> Publish to Power BI Service or export as an image.
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your <strong>Day 8 dashboard</strong> by <strong>11:59 PM (local time)</strong> today.<br/>
+      ✅ Review and comment on <strong>10 other participants’ dashboards</strong> — mention one key insight you found interesting.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="goldbox">
+      “Day 8 of the #SIAnalytics30DayChallenge 🏃‍♂️<br/>
+      Visualized activity patterns among adults and children using the Physical Activity dataset.<br/>
+      Only 35% met WHO’s MVPA recommendations — children were more active than adults!<br/>
+      Created with Power BI 💡<br/>
+      #RStats #Python #PowerBI #PublicHealth #DataForWellness @SIAnalyticsLab @SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
