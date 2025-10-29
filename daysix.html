@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💵 SI Analytics 30-Day Challenge — Day 6: U.S. State Finances Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #f0fdf4;
+      border-left: 5px solid #0f766e;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .goldbox {
+      background-color: #fefce8;
+      border-left: 5px solid #facc15;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💵 SI Analytics 30-Day Data Visualization Challenge — Day 6</h1>
+    <p><strong>U.S. State Government Finances (1992–2019)</strong></p>
+
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset comes from the <strong>CORGIS Dataset Project</strong>, built using the 
+      <strong>Annual Survey of State Government Finances</strong> by the U.S. Census Bureau.
+      It summarizes <strong>revenues, expenditures, debts, and assets</strong> for each U.S. state from 
+      1992 to 2019, providing a rich longitudinal view of fiscal health and spending priorities.
+    </p>
+
+    <div class="highlight">
+      📄 <strong>Dataset name:</strong> finance.csv<br/>
+      📍 <strong>Source:</strong> CORGIS Finance Dataset<br/>
+      📈 <strong>Official Survey Reference:</strong> U.S. Census – State Government Finances
+    </div>
+
+    <h2>🔑 Key Variables</h2>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>State</td><td>Full state name (e.g., “ALABAMA”)</td></tr>
+      <tr><td>Year</td><td>Reporting year (1992–2019)</td></tr>
+      <tr><td>Totals.Revenue</td><td>Total money received by the state from all external sources</td></tr>
+      <tr><td>Totals.Expenditure</td><td>Total money spent by the state government</td></tr>
+      <tr><td>Totals.Tax</td><td>Total tax revenue</td></tr>
+      <tr><td>Totals.Intergovernmental</td><td>Revenue received from other levels of government</td></tr>
+      <tr><td>Details.Education.Education Total</td><td>Spending on education (K–12, colleges, etc.)</td></tr>
+      <tr><td>Details.Health.Health Total Expenditure</td><td>Spending on health services and programs</td></tr>
+      <tr><td>Details.Transportation.Highways.Highways Total Expenditure</td><td>Spending on highway infrastructure</td></tr>
+      <tr><td>Details.Welfare.Welfare Institution Total Expenditure</td><td>Spending on welfare programs</td></tr>
+      <tr><td>Totals.Debt at end of fiscal year</td><td>Outstanding government debt at fiscal year-end</td></tr>
+    </table>
+
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Create a <strong>U.S. State Finance Dashboard</strong> to explore and compare how states allocate funds 
+      and generate revenue over time.
+    </p>
+    <div class="goldbox">
+      💡 <strong>Core Question:</strong><br/>
+      “How do government revenues, expenditures, and debts vary across states and years — and which sectors receive the largest investments?”
+    </div>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Explore the Data</strong><br/>
+        • <strong>R:</strong> <code>read_csv("finance.csv")</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv("finance.csv")</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Text/CSV → Select file or paste link<br/>
+        Inspect data dimensions and ensure numerical columns (e.g., <code>Totals.Revenue</code>, <code>Totals.Expenditure</code>) are properly formatted as numeric values.
+      </li>
+
+      <li><strong>Clean and Prepare the Data</strong><br/>
+        • Filter for a specific year (e.g., 2019) for static analysis, or use all years for trend analysis.<br/>
+        • Calculate new indicators such as:
+        <ul>
+          <li>💰 <strong>Budget Balance</strong> = Totals.Revenue – Totals.Expenditure</li>
+          <li>📊 <strong>Debt Ratio</strong> = (Debt at end of fiscal year ÷ Totals.Revenue) × 100</li>
+          <li>🏫 <strong>Education Share</strong> = Education Total ÷ Totals.Expenditure × 100</li>
+        </ul>
+      </li>
+
+      <li><strong>Build Your Dashboard</strong><br/>
+        Use <strong>R (ggplot2/plotly/quarto)</strong>, <strong>Python (matplotlib/plotly/dash)</strong>, or <strong>Power BI</strong> to visualize the following:
+        <ul>
+          <li>🗺️ Map or Bar Chart: Top 10 states by total expenditure or debt (most recent year)</li>
+          <li>📈 Line Chart: Revenue vs Expenditure trend (1992–2019) for a selected state</li>
+          <li>📊 Stacked Bar Chart: Breakdown of spending by sector (Education, Health, Welfare, Transportation)</li>
+          <li>💸 Scatter Plot: Relationship between revenue and debt across states</li>
+          <li>🧮 KPI Cards:
+            <ul>
+              <li>Average Revenue</li>
+              <li>Average Expenditure</li>
+              <li>Average Debt Ratio</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="highlight">
+          💡 <strong>Power BI Tip:</strong> Use the “State” field as a slicer to switch between states interactively.<br/>
+          💡 <strong>R/Python Tip:</strong> Facet or animate charts by year to show fiscal trends.
+        </div>
+      </li>
+
+      <li><strong>Highlight Key Insights</strong><br/>
+        In a text box or caption, summarize findings such as:
+        <ul>
+          <li>States with the highest education or health expenditure</li>
+          <li>How tax revenue compares to total revenue</li>
+          <li>Debt trends over time for selected states</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <ol>
+      <li>Share your dashboard or snapshot on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Use hashtags: 
+        <strong>#SIAnalytics30DayChallenge #DataVisualization #FinanceAnalytics #PowerBI #RStats #Python #DataForPolicy</strong>
+      </li>
+    </ol>
+    <p>
+      💾 <strong>Hosting Options:</strong><br/>
+      • <strong>R/Python:</strong> Render and host via Quarto + GitHub Pages.<br/>
+      • <strong>Power BI:</strong> Publish to Power BI Service or export as an image/PDF.
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your <strong>Day 6 dashboard</strong> by <strong>11:59 PM (local time)</strong> today.<br/>
+      ✅ Review <strong>10 other participants’ posts</strong> — share 1 insight or visualization that you found impactful.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="goldbox">
+      “Day 6 of the #SIAnalytics30DayChallenge 💰<br/>
+      Built a dashboard analyzing U.S. state finances from 1992–2019.<br/>
+      California leads in total expenditure, while Texas shows steady revenue growth and low debt ratios.<br/>
+      Visualized with Power BI!<br/>
+      #FinanceAnalytics #PublicData #RStats #Python #PowerBI @SIAnalyticsLab @SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
