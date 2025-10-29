@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🏈 SI Analytics 30-Day Challenge — Day 1: NFL Injuries Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #f0fdf4;
+      border-left: 5px solid #0f766e;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏈 SI Analytics 30-Day Data Visualization Challenge — Daily Task 1: NFL Injuries Dashboard</h1>
+
+    <h2>📘 Background</h2>
+    <p>
+      In this task, you’ll explore the <strong>NFL Injuries dataset</strong> compiled by 
+      <a href="https://github.com/jjallaire/nfl-injuries-dashboard/blob/main/nfl-injuries.csv" target="_blank">JJ Allaire</a>.
+      The dataset tracks players' injury status — <em>Questionable</em>, <em>Out</em>, or <em>Injured</em> — across multiple years in the NFL.
+    </p>
+    <div class="highlight">
+      <strong>📂 Dataset:</strong> <code>nfl-injuries.csv</code><br/>
+      Each row represents a player’s weekly injury record and contains:<br/>
+      • <code>data</code>: Injury status (e.g., Out, Questionable)<br/>
+      • <code>year</code>: Season year (2012–2022)<br/>
+      • <code>row_number</code>: Entry index (used for counting or tracking records)
+    </div>
+
+    <h2>🎯 Objective</h2>
+    <p>
+      Recreate a simple yet insightful dashboard similar to the sample below, showing yearly trends and summary insights 
+      for player injuries.
+    </p>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Inspect the Data</strong><br/>
+        • <strong>R:</strong> <code>readr::read_csv("nfl-injuries.csv")</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv("nfl-injuries.csv")</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Web → paste the GitHub CSV URL above.<br/>
+        Preview columns and confirm that the dataset has <code>data</code>, <code>year</code>, and <code>row_number</code>.
+      </li>
+      <li><strong>Prepare and Summarize</strong><br/>
+        Group the data by year and injury status, then compute:<br/>
+        • Count of players per status per year<br/>
+        • Average count across years (optional metric)<br/>
+        Example summary:
+        <pre>Year   Status         Count
+2012   Out            480
+2012   Questionable   510</pre>
+      </li>
+      <li><strong>Build Your Dashboard</strong><br/>
+        Create the following visuals:
+        <ul>
+          <li>🧮 Value Boxes / Cards:
+            <ul>
+              <li>Average Injured</li>
+              <li>Average Out</li>
+              <li>Average Questionable</li>
+            </ul>
+          </li>
+          <li>📈 Line Chart: Number of players by status over years (compare trends).</li>
+          <li>📊 Bar Chart: Total count of injuries by year.</li>
+        </ul>
+        <div class="highlight">
+          💡 <strong>R/Python users:</strong> Use Quarto Dashboard or Plotly.<br/>
+          💡 <strong>Power BI users:</strong> Combine Cards, Line, and Bar charts into a single-page report.
+        </div>
+      </li>
+      <li><strong>Add Design Features</strong><br/>
+        <ul>
+          <li>Apply distinct colors for each injury status.</li>
+          <li>Add a title: <strong>“NFL Injuries — 10 Years Trend Dashboard”</strong>.</li>
+          <li>Keep layout clean and professional with readable labels.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <ol>
+      <li>Post your screenshot, GitHub link, or dashboard URL on LinkedIn, X, Instagram, or Facebook.</li>
+      <li>Tag: <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Use hashtags:
+        <strong>#SIAnalytics30DayChallenge #DataVisualization #RStats #Python #PowerBI #NFLInjuries</strong>.
+      </li>
+    </ol>
+    <p>
+      💾 <strong>Hosting Options:</strong><br/>
+      • R/Python → publish via <em>Quarto / GitHub Pages</em><br/>
+      • Power BI → publish to Power BI Service and share a public link.
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your visual by <strong>11:59 PM (local time)</strong> today.<br/>
+      Provide constructive feedback on at least <strong>10 other participants’ dashboards</strong>.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="highlight">
+      “Day 1 of the #SIAnalytics30DayChallenge ✅<br/>
+      Built an interactive dashboard analyzing NFL player injuries over the last decade!<br/>
+      Fascinating to see ‘Questionable’ statuses trend upward post-2016.<br/>
+      #RStats #Python #PowerBI #DataVisualization @SIAnalyticsLab @SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
