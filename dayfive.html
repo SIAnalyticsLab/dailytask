@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🩺 SI Analytics 30-Day Challenge — Day 5: India TB Pathways Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #f0fdf4;
+      border-left: 5px solid #0f766e;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .goldbox {
+      background-color: #fefce8;
+      border-left: 5px solid #facc15;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🩺 SI Analytics 30-Day Data Visualization Challenge — Day 5</h1>
+    <p><strong>India TB Pathways and Cost of Care (Vellore District, Tamil Nadu)</strong><br/>
+      📁 Dataset: 
+      <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/india_tb_pathways_and_costs.csv" target="_blank">
+      india_tb_pathways_and_costs.csv</a>
+    </p>
+
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset comes from a <strong>public health study</strong> conducted in <strong>Vellore District, Tamil Nadu, India</strong>, 
+      examining pre-diagnostic costs, care-seeking pathways, and treatment initiation delays among <strong>880 new adult pulmonary tuberculosis (TB) patients</strong> 
+      registered at primary health centres (PHCs).
+    </p>
+    <p>
+      It captures the <strong>financial burden</strong> and <strong>health system delays</strong> TB patients faced before diagnosis — 
+      highlighting challenges in accessing affordable, timely TB care.
+    </p>
+
+    <div class="highlight">
+      📄 <strong>Dataset name:</strong> india_tb_pathways_and_costs.csv<br/>
+      📍 <strong>Source:</strong> 
+      <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/india_tb_pathways_and_costs.csv" target="_blank">
+      GitHub Repository</a>
+    </div>
+
+    <h2>🔑 Key Variables</h2>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>Sex, Age, Education, Employment</td><td>Demographic factors</td></tr>
+      <tr><td>Alcohol, Smoking, Diabetes</td><td>Behavioral and clinical factors</td></tr>
+      <tr><td>Wtinkgs, HtinCms, bmi</td><td>Anthropometric data</td></tr>
+      <tr><td>Form of TB, Chext Xray</td><td>Diagnostic indicators</td></tr>
+      <tr><td>first/second/third visit location & cost</td><td>Health-seeking pathway before diagnosis</td></tr>
+      <tr><td>Health sys delay (days)</td><td>Delay before accessing proper TB services</td></tr>
+      <tr><td>Treatment initiation delay (days)</td><td>Delay from diagnosis to treatment start</td></tr>
+    </table>
+
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Develop a <strong>Public Health Pathways Dashboard</strong> that answers:
+    </p>
+    <div class="goldbox">
+      💡 <strong>Core Question:</strong> 
+      “How do patient demographics and health-seeking behaviors influence costs and delays in TB diagnosis and treatment in India?”
+    </div>
+    <p>
+      Your dashboard should provide clear visual insights into who is most affected, where delays occur, and how costs vary by visit type.
+    </p>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Explore the Data</strong><br/>
+        • <strong>R:</strong> <code>read_csv("india_tb_pathways_and_costs.csv")</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv("india_tb_pathways_and_costs.csv")</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Web/Text CSV → Paste GitHub CSV URL<br/>
+        Inspect for missing values in key columns such as visit costs or delays, and standardize categorical variables (e.g., “Pvt. docto” → “Private Doctor”).
+      </li>
+
+      <li><strong>Prepare and Summarize</strong><br/>
+        Create derived metrics such as:
+        <ul>
+          <li>💰 <strong>Total Pre-diagnostic Cost</strong> = sum of all visit costs</li>
+          <li>⏱️ <strong>Total Delay</strong> = Health System Delay + Treatment Delay</li>
+          <li>📊 <strong>Pathway Complexity</strong> = Number of distinct visit locations before PHC</li>
+        </ul>
+        Then summarize:
+        <ul>
+          <li>Average total cost and delay by Sex, Education, or Employment status</li>
+          <li>Distribution of first visit locations (PHC vs. Private Clinics vs. Hospitals)</li>
+        </ul>
+      </li>
+
+      <li><strong>Build Your Dashboard</strong><br/>
+        Use <strong>R, Python, or Power BI</strong> to create at least 4 visuals:
+        <ul>
+          <li>💸 Bar Chart: Average total cost by first visit location</li>
+          <li>🕒 Column Chart: Mean health system vs. treatment initiation delay</li>
+          <li>👩‍⚕️ Stacked Bar Chart: Patient education or employment vs. total delay</li>
+          <li>📈 Scatter Plot or Box Plot: Relationship between total cost and total delay</li>
+          <li>📊 Pie Chart: Distribution of first visit locations by percentage</li>
+        </ul>
+        <div class="highlight">
+          💡 <strong>Design Tip:</strong> Use distinct color codes for PHC, Government, and Private facilities to show pathway diversity.
+        </div>
+      </li>
+
+      <li><strong>Add Key Insight Cards (Optional)</strong><br/>
+        Include summary KPIs for:
+        <ul>
+          <li>Average total pre-diagnostic cost</li>
+          <li>Average total delay (in days)</li>
+          <li>% of patients who first visited private providers</li>
+          <li>Average BMI of participants</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <ol>
+      <li>Post your dashboard or visualization screenshot on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags: 
+        <strong>#SIAnalytics30DayChallenge #DataVisualization #PublicHealthAnalytics #Tuberculosis #HealthSystems #RStats #Python #PowerBI</strong>
+      </li>
+    </ol>
+    <p>
+      💾 <strong>Hosting Suggestions:</strong><br/>
+      • <strong>R/Python:</strong> Render with Quarto and publish on GitHub Pages.<br/>
+      • <strong>Power BI:</strong> Publish to Power BI Service or share a clean screenshot with concise titles and legends.
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your <strong>Day 5 Dashboard</strong> by <strong>11:59 PM (local time)</strong> today.<br/>
+      ✅ Provide feedback on <strong>10 other participants’ submissions</strong> — highlight what insight or visualization you found most compelling.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="goldbox">
+      “Day 5 of the #SIAnalytics30DayChallenge 🩺<br/>
+      Visualized TB care pathways from Tamil Nadu, India — showing high costs and delays among patients who first visited private clinics.<br/>
+      Data storytelling for impact in public health!<br/>
+      #RStats #PowerBI #Python #HealthAnalytics #SIAnalytics @SIAnalyticsLab @SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
