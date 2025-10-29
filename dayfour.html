@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💰 SI Analytics 30-Day Challenge — Day 4: Finance Data Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #0f172a;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #0f766e;
+      font-size: 1.9em;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #0f766e;
+      border-left: 5px solid #0f766e;
+      padding-left: 10px;
+      font-size: 1.2em;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul, ol {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    code {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+    .highlight {
+      background-color: #f0fdf4;
+      border-left: 5px solid #0f766e;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .goldbox {
+      background-color: #fefce8;
+      border-left: 5px solid #facc15;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💰 SI Analytics 30-Day Data Visualization Challenge — Day 4</h1>
+    <p><strong>Finance Data: Investment Habits during COVID-19 Lockdown</strong><br/>
+      📁 Dataset: 
+      <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/Finance_data.csv" target="_blank">
+      Finance_data.csv</a>
+    </p>
+
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset, <strong>“Finance_data.csv”</strong>, was collected via Google Forms as a fun research project during the COVID-19 lockdown.  
+      It captures individuals’ <strong>investment behavior, preferences, and financial attitudes</strong> across different age groups and genders.
+    </p>
+    <p>
+      You’ll use this dataset to uncover how people invest, what motivates their choices, and what they value most in their investment decisions.
+    </p>
+
+    <div class="highlight">
+      📄 <strong>Dataset name:</strong> Finance_data.csv
+      <br/><br/>
+      <strong>Key variables include:</strong>
+      <table>
+        <tr><th>Variable</th><th>Description</th></tr>
+        <tr><td>GENDER</td><td>Male/Female</td></tr>
+        <tr><td>AGE</td><td>Respondent age</td></tr>
+        <tr><td>Investment_Avenues</td><td>Whether the person invests (Yes/No)</td></tr>
+        <tr><td>Mutual_Funds, Equity_Market, Debentures, etc.</td><td>Ranking of preferred investment options</td></tr>
+        <tr><td>Stock_Market</td><td>Whether the person invests in the stock market</td></tr>
+        <tr><td>Factor</td><td>Key factors influencing investment (e.g., Returns, Risk)</td></tr>
+        <tr><td>Objective</td><td>Investment goal (e.g., Capital Appreciation, Income)</td></tr>
+        <tr><td>Purpose</td><td>Purpose behind investment (e.g., Wealth Creation, Savings for Future)</td></tr>
+        <tr><td>Duration</td><td>How long they prefer to keep money invested</td></tr>
+        <tr><td>Expect</td><td>Expected return range (e.g., 10%-20%)</td></tr>
+        <tr><td>Avenue</td><td>Actual investment avenue used most often</td></tr>
+        <tr><td>Source</td><td>Information sources (e.g., Internet, TV, Financial Consultants)</td></tr>
+      </table>
+    </div>
+
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Develop an <strong>Investment Insights Dashboard</strong> showing investor preferences, objectives, and behavior patterns during the pandemic period.
+    </p>
+    <div class="goldbox">
+      💡 <strong>Core Question:</strong> 
+      “How do age, gender, and investment motivations influence people’s financial choices?”
+    </div>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <ol>
+      <li><strong>Load and Inspect the Data</strong><br/>
+        • <strong>R:</strong> <code>read_csv("Finance_data.csv")</code><br/>
+        • <strong>Python:</strong> <code>pd.read_csv("Finance_data.csv")</code><br/>
+        • <strong>Power BI:</strong> Home → Get Data → Text/CSV → Select the file<br/>
+        Check for missing or inconsistent entries (e.g., Yes/No casing, spaces in column names).  
+        Rename columns where necessary for easier use (e.g., replace spaces with underscores).
+      </li>
+
+      <li><strong>Clean and Prepare</strong><br/>
+        • Convert categorical variables (e.g., GENDER, Investment_Avenues) to factors or categories.<br/>
+        • Standardize rankings (1 = highest preference).<br/>
+        • Group or summarize the data to explore:<br/>
+          o % of respondents investing in each avenue<br/>
+          o Gender-wise differences in investment behavior<br/>
+          o Common investment goals and durations
+      </li>
+
+      <li><strong>Build Your Dashboard</strong><br/>
+        Visualize key insights using R, Python, or Power BI.<br/>
+        Include at least four components:
+        <ul>
+          <li>👩‍💼 Bar Chart: Top 5 preferred investment options by ranking</li>
+          <li>📊 Pie Chart: Gender distribution of investors</li>
+          <li>🎯 Stacked Bar Chart: Investment objective by gender (e.g., Capital Appreciation vs Growth)</li>
+          <li>📆 Column Chart: Preferred investment duration by age group</li>
+          <li>💸 Donut Chart (optional): Expected return percentages</li>
+        </ul>
+        <div class="highlight">
+          💡 <strong>Power BI Tip:</strong> Use “Investment_Avenues” as a slicer to filter across visuals.<br/>
+          💡 <strong>R/Python Tip:</strong> Use Plotly or ggplot2 for interactivity and clean presentation.
+        </div>
+      </li>
+
+      <li><strong>Add Summary Insights or Value Cards</strong><br/>
+        Show KPIs such as:
+        <ul>
+          <li>Total respondents</li>
+          <li>% who invest in stock market</li>
+          <li>Top investment avenue overall</li>
+          <li>Average expected return range</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>🚀 Sharing Your Output</h2>
+    <ol>
+      <li>Post your dashboard or screenshot on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags: 
+        <strong>#SIAnalytics30DayChallenge #DataVisualization #FinanceAnalytics #RStats #Python #PowerBI #InvestSmart</strong>
+      </li>
+    </ol>
+    <p>
+      💾 <strong>Hosting Suggestions:</strong><br/>
+      • <strong>R/Python:</strong> Publish via Quarto Dashboard or GitHub Pages.<br/>
+      • <strong>Power BI:</strong> Publish to Power BI Service or share a clean screenshot with clear legends and titles.
+    </p>
+
+    <h2>🗓️ Deadline</h2>
+    <p>
+      Submit your <strong>Day 4 dashboard</strong> by <strong>11:59 PM (local time)</strong> today.<br/>
+      ✅ Review and comment on at least <strong>10 other participants’ posts</strong> — share one takeaway or visualization idea that inspired you.
+    </p>
+
+    <h2>💬 Example Post Caption</h2>
+    <div class="goldbox">
+      “Day 4 of the #SIAnalytics30DayChallenge 💹<br/>
+      Explored financial investment trends during the COVID-19 lockdown!<br/>
+      Women favored Mutual Funds and Gold, while men leaned toward Equities.<br/>
+      Returns and Capital Appreciation were the top motivators.<br/>
+      #FinanceAnalytics #DataVisualization #RStats #Python #PowerBI @SIAnalyticsLab @SIAnalytics”
+    </div>
+
+    <div class="footer">
+      <p><strong>The SI Analytics Team</strong><br/>
+      📊 Empowering Decisions. Driving Innovation.</p>
+    </div>
+  </div>
+</body>
+</html>
