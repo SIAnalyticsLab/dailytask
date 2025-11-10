@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 18 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🛍️ SI Analytics 30-Day Data Visualization Challenge — Day 18</h1>
+  <h2>Customer Reviews Dataset: Sentiment Analysis & Product Experience Dashboard</h2>
+
+  <p><strong>📂 Dataset:</strong> 
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/Customer_Review%20(1).csv">
+      Customer_Review (1).csv
+    </a>
+  </p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>Customer_Review (1).csv</strong> — captures real-world customer feedback on products and services, including review text, sentiment, rating, and other relevant details.  
+      It’s a perfect dataset for exploring <strong>Natural Language Processing (NLP)</strong) concepts, sentiment classification, and customer experience analytics.
+    </p>
+    <p>
+      As digital feedback becomes an essential driver of business decisions, this exercise helps you visualize how customers feel, what they value, and what areas need improvement — a vital step for <strong>data-driven brand management</strong>.
+    </p>
+
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>Review_ID</td><td>Unique identifier for each review</td></tr>
+      <tr><td>Product</td><td>Name of the reviewed product</td></tr>
+      <tr><td>Category</td><td>Product category (e.g., Electronics, Apparel, etc.)</td></tr>
+      <tr><td>Customer_Name</td><td>Name of the reviewer (or anonymized)</td></tr>
+      <tr><td>Review_Text</td><td>Full customer review text</td></tr>
+      <tr><td>Rating</td><td>Numeric rating (typically 1–5)</td></tr>
+      <tr><td>Sentiment</td><td>Overall sentiment (Positive, Negative, Neutral)</td></tr>
+      <tr><td>Date</td><td>Date of review submission</td></tr>
+    </table>
+
+    <p><strong>💡 Note:</strong> This dataset is ideal for dashboards that blend quantitative metrics (ratings) with qualitative insights (review text sentiment).</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Create a <strong>Customer Sentiment and Experience Dashboard</strong> that answers:
+    </p>
+    <ul>
+      <li>💬 What is the overall customer satisfaction level across products?</li>
+      <li>📈 How do sentiment and ratings vary across categories or time?</li>
+      <li>🔍 Which products receive the most positive or negative feedback?</li>
+      <li>🧠 What common words or phrases appear in positive vs negative reviews?</li>
+      <li>⭐ What’s the relationship between sentiment and numeric ratings?</li>
+    </ul>
+    <p>
+      The goal is to combine text analytics and visualization to tell a cohesive story about customer experience and brand performance.
+    </p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Dataset</h3>
+    <p>
+      • R: <code>readr::read_csv("Customer_Review (1).csv")</code><br>
+      • Python: <code>pd.read_csv("Customer_Review (1).csv")</code><br>
+      • Power BI: Home → Get Data → Text/CSV → paste GitHub raw link
+    </p>
+    <p>
+      Explore unique products, categories, and sentiment distributions.  
+      Check for missing values in <code>Review_Text</code> or <code>Rating</code> fields.
+    </p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Standardize text (lowercase, remove punctuation, trim whitespace).</li>
+      <li>Convert <code>Date</code> to datetime and extract month/year.</li>
+      <li>Handle missing sentiment — classify using rules or ML (optional).</li>
+      <li>Create derived metrics:
+        <ul>
+          <li>📊 <code>Average_Rating_By_Product</code></li>
+          <li>💬 <code>Sentiment_Score = (Positive – Negative) / Total Reviews</code></li>
+          <li>🕒 Review trend over time by sentiment</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Visualize using R (ggplot2/plotly/quarto), Python (matplotlib/plotly/dash), or Power BI:</p>
+    <ul>
+      <li>💬 Donut Chart: Sentiment distribution (Positive/Neutral/Negative)</li>
+      <li>⭐ Bar Chart: Average rating by product/category</li>
+      <li>🕒 Line Chart: Review sentiment over time</li>
+      <li>🧭 Word Cloud: Most frequent words in negative vs positive reviews</li>
+      <li>📊 Table: Top 10 best-rated and worst-rated products</li>
+    </ul>
+    <p>
+      <strong>💡 Power BI Tip:</strong> Use a navigation bar to switch between “Overview”, “Word Cloud”, and “Trends” pages.  
+      <strong>💡 R/Python Tip:</strong> Use <code>tidytext</code> or <code>TextBlob</code> for sentiment scoring and interactive text summaries.
+    </p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>⭐ Average Customer Rating</li>
+      <li>💬 Total Reviews Analyzed</li>
+      <li>📈 % Positive Reviews</li>
+      <li>⚠️ % Negative Reviews</li>
+      <li>🏆 Top Product by Sentiment</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When you are done:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, and mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #DataVisualization #PowerBI #RStats #Python #CustomerAnalytics #TextMining #SentimentAnalysis #DataStorytelling #AnalyticsForImpact</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 18 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — highlight one insight or visualization you found powerful.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 18 of the #SIAnalytics30DayChallenge 🛍️<br>
+      Built a Customer Experience Dashboard visualizing review sentiments across multiple product categories.  
+      The insights show that while average satisfaction is high, certain products face recurring quality concerns.  
+      Turning words into data helps organizations truly hear their customers.  
+      #CustomerAnalytics #TextMining #PowerBI #RStats #Python #DataStorytelling @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+</body>
+</html>
