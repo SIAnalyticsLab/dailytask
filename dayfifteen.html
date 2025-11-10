@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 15 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .highlight {
+      color: #F59E0B;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🧬 SI Analytics 30-Day Data Visualization Challenge — Day 15</h1>
+  <h2>Global HIV Epidemic Dashboard: Trends in New Infections and People Living with HIV</h2>
+
+  <p><strong>📂 Datasets:</strong><br>
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/newly_hiv_infected_number_all_ages.csv">newly_hiv_infected_number_all_ages.csv</a> — Annual estimates of newly HIV-infected individuals (all ages)<br>
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/people_living_with_hiv_number_all_ages.csv">people_living_with_hiv_number_all_ages.csv</a> — Annual estimates of total people living with HIV (all ages)
+  </p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      These two datasets, derived from UNAIDS global estimates, present a snapshot of the **HIV epidemic burden** across countries and years.
+      The first dataset tracks new HIV infections per year, while the second captures total people living with HIV (PLHIV).  
+      Together they offer a powerful foundation to explore trends, progress toward the 95-95-95 targets, and regional disparities in epidemic control.
+    </p>
+    <p>
+      Your mission is to transform these data into a story of progress — and remaining challenges — in the global fight against HIV.
+    </p>
+
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>country</td><td>Name of the country or territory</td></tr>
+      <tr><td>year</td><td>Year of observation</td></tr>
+      <tr><td>value</td><td>Number of people (new HIV infections or PLHIV)</td></tr>
+      <tr><td>indicator</td><td>Type of metric (new infections or PLHIV)</td></tr>
+    </table>
+
+    <p><strong>💡 Note:</strong> Data are from UNAIDS estimates and may include modeled values for certain countries and years.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>Create a <strong>Global HIV Epidemic Dashboard</strong> that answers:</p>
+    <ul>
+      <li>📉 How have new HIV infections changed over time by region or country?</li>
+      <li>📈 How does the trend of people living with HIV compare to new infections?</li>
+      <li>🌍 Which countries show progress (steep declines in new cases) versus those with rising numbers?</li>
+      <li>⚖️ What’s the ratio of new infections to total PLHIV — a proxy for epidemic control?</li>
+    </ul>
+    <p>By combining both datasets, you’ll build a dashboard that visualizes progress and gaps in the HIV response over time and across regions.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Datasets</h3>
+    <p>
+      • R: <code>readr::read_csv("newly_hiv_infected_number_all_ages.csv")</code> and <code>readr::read_csv("people_living_with_hiv_number_all_ages.csv")</code><br>
+      • Python: <code>pd.read_csv("newly_hiv_infected_number_all_ages.csv")</code> and <code>pd.read_csv("people_living_with_hiv_number_all_ages.csv")</code><br>
+      • Power BI: Home → Get Data → Web/CSV → paste each GitHub raw link
+    </p>
+    <p>Inspect countries, years, and value ranges. Ensure numeric formatting for the value field.</p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Rename columns for clarity (e.g., <code>new_infections</code>, <code>plhiv</code>).</li>
+      <li>Join datasets by <code>country</code> and <code>year</code>.</li>
+      <li>Create derived fields:
+        <ul>
+          <li>📊 <code>infection_ratio = new_infections / plhiv</code></li>
+          <li>📉 % Change in New Infections = (current – previous) / previous × 100</li>
+          <li>📈 % Change in PLHIV over time</li>
+        </ul>
+      </li>
+      <li>Group countries by region (Africa, Asia, Europe, etc.) to compute regional aggregates.</li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <ul>
+      <li>🌍 Map: Global heat map showing PLHIV by country (latest year)</li>
+      <li>📈 Line Chart: New infections and PLHIV trends (2000-2023)</li>
+      <li>⚖️ Scatter Plot: New infections vs PLHIV (colored by region)</li>
+      <li>📊 Bar Chart: Top 10 countries with highest infection ratio (latest year)</li>
+      <li>💬 KPI Cards: Global totals, average annual decline in new infections, and infection ratio</li>
+    </ul>
+
+    <p><strong>💡 Power BI Tip:</strong> Use a year slicer and play axis to animate the global trend.  
+       <strong>💡 R/Python Tip:</strong> Build interactive dashboards with Plotly, Shiny or Dash to filter by region and year.</p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>🧬 Total People Living with HIV (latest year)</li>
+      <li>📉 New Infections (latest year and % change since 2010)</li>
+      <li>⚖️ Global Infection Ratio (New / PLHIV)</li>
+      <li>🌍 Region with Largest Decrease in New Infections</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When complete:</p>
+    <ol>
+      <li>Share your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, and mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #HIVData #DataVisualization #RStats #Python #PowerBI #PublicHealthAnalytics #Epidemiology #GlobalHealth #AnalyticsForImpact</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export as image/PDF.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 15 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — share one insight you found impactful.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 15 of the #SIAnalytics30DayChallenge 🧬<br>
+      Built a Global HIV Epidemic Dashboard combining new infection and PLHIV data to visualize trends across countries and regions.  
+      Insights show encouraging declines in new cases in Southern Africa, yet growing burdens in other regions.  
+      Every data point is a reminder that progress is possible — but the work continues.  
+      #PublicHealth #Epidemiology #DataForImpact #PowerBI #RStats #Python @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+</body>
+</html>
