@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 20 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🛍️ SI Analytics 30-Day Data Visualization Challenge — Day 20</h1>
+  <h2>Shopping Behavior Dataset: Consumer Demographics & Spending Habits Dashboard</h2>
+
+  <p><strong>📂 Dataset:</strong> 
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/shopping_behavior_updated.csv">
+      shopping_behavior_updated.csv
+    </a>
+  </p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>shopping_behavior_updated.csv</strong> — explores how <strong>age, gender, and income</strong> shape consumer shopping behavior.  
+      It includes demographic details, spending scores, payment preferences, and time-based shopping patterns — making it a great resource for understanding <strong>customer segmentation, market trends, and retail decision-making</strong>.
+    </p>
+    <p>
+      With this dataset, analysts can build dashboards that reveal who shops the most, what drives purchases, and how financial capacity and lifestyle influence buying frequency.
+    </p>
+
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>Customer_ID</td><td>Unique identifier for each customer</td></tr>
+      <tr><td>Gender</td><td>Male or Female</td></tr>
+      <tr><td>Age</td><td>Customer age in years</td></tr>
+      <tr><td>Age_Group</td><td>Age category (e.g., 18–25, 26–35, etc.)</td></tr>
+      <tr><td>Annual_Income</td><td>Customer’s annual income (in USD)</td></tr>
+      <tr><td>Spending_Score</td><td>Numerical score reflecting spending habits</td></tr>
+      <tr><td>Shopping_Frequency</td><td>How often a customer shops (e.g., Weekly, Monthly)</td></tr>
+      <tr><td>Preferred_Payment_Method</td><td>Mode of payment (Credit Card, Cash, Mobile Payment, etc.)</td></tr>
+      <tr><td>Purchase_Category</td><td>Category of most frequently purchased product (e.g., Electronics, Fashion)</td></tr>
+      <tr><td>Time_of_Shopping</td><td>Typical time period for purchases (Morning, Afternoon, Evening)</td></tr>
+    </table>
+
+    <p><strong>💡 Note:</strong> This dataset supports advanced insights such as <em>market segmentation, behavioral clustering, and customer journey visualization</em>.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Build a <strong>Shopping Behavior Dashboard</strong> that answers:
+    </p>
+    <ul>
+      <li>🧍‍♀️ How do gender and age influence spending scores and income levels?</li>
+      <li>💳 What payment methods are most popular across income segments?</li>
+      <li>🕒 When do customers shop the most (morning, afternoon, evening)?</li>
+      <li>🛍️ Which product categories dominate purchases by demographic?</li>
+      <li>📊 How does shopping frequency relate to spending and income?</li>
+    </ul>
+    <p>
+      Your dashboard should help retail managers, marketers, and analysts visualize <strong>customer personas</strong> and identify actionable insights for product marketing and sales strategy.
+    </p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Dataset</h3>
+    <p>
+      • R: <code>readr::read_csv("shopping_behavior_updated.csv")</code><br>
+      • Python: <code>pd.read_csv("shopping_behavior_updated.csv")</code><br>
+      • Power BI: Home → Get Data → Text/CSV → paste GitHub raw link
+    </p>
+    <p>
+      Explore unique values for <code>Gender</code>, <code>Age_Group</code>, and <code>Purchase_Category</code>.  
+      Confirm data types (ensure numeric variables such as <code>Annual_Income</code> and <code>Spending_Score</code> are properly recognized).
+    </p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Remove missing or duplicate customer records.</li>
+      <li>Standardize categorical labels (e.g., “credit card” → “Credit Card”).</li>
+      <li>Create derived fields:
+        <ul>
+          <li>💵 <code>Income_Category</code> (Low: &lt;30K, Mid: 30K–70K, High: &gt;70K)</li>
+          <li>🧾 <code>Spending_to_Income_Ratio = Spending_Score / Annual_Income</code></li>
+          <li>📅 <code>Shopping_Segment = combine(Age_Group, Gender)</code> for demographic clusters</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Visualize using R (ggplot2/plotly/quarto), Python (matplotlib/plotly/dash), or Power BI:</p>
+    <ul>
+      <li>🧍‍♂️ Donut Chart: Gender distribution of customers</li>
+      <li>📈 Scatter Plot: Annual income vs spending score</li>
+      <li>💳 Bar Chart: Payment method usage by gender</li>
+      <li>🕒 Column Chart: Shopping frequency across age groups</li>
+      <li>📊 Tree Map: Top product categories by income category</li>
+      <li>📆 Line Chart: Spending trends by time of day</li>
+    </ul>
+    <p><strong>💡 Power BI Tip:</strong> Add slicers for Gender, Age Group, and Purchase Category.  
+       <strong>💡 R/Python Tip:</strong> Use clustering (e.g., K-Means) to visualize customer segments in 2D space (Income vs Spending Score).</p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>🧾 Total Customers</li>
+      <li>💵 Average Annual Income</li>
+      <li>💳 Most Popular Payment Method</li>
+      <li>🛍️ Top Product Category</li>
+      <li>📈 Average Spending Score</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When you are done:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, and mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #DataVisualization #PowerBI #RStats #Python #RetailAnalytics #ShoppingBehavior #CustomerSegmentation #AnalyticsForImpact #DataStorytelling</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 20 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — highlight one creative design or data insight you find inspiring.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 20 of the #SIAnalytics30DayChallenge 🛍️  
+      Built a Shopping Behavior Dashboard analyzing how age, gender, and income affect shopping patterns.  
+      The data revealed that younger shoppers spend more frequently, while higher-income customers prioritize premium categories.  
+      Visualizing behavior turns data into insight — and insight into smarter marketing strategies.  
+      #ShoppingAnalytics #CustomerSegmentation #PowerBI #RStats #Python #AnalyticsForImpact @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+</body>
+</html>
