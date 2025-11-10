@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 14 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .highlight {
+      color: #F59E0B;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>👶 SI Analytics 30-Day Data Visualization Challenge — Day 14</h1>
+  <h2>Child & Household Survey Data: Early Childhood, Household Context & Insights Dashboard</h2>
+  <p><strong>📂 Datasets:</strong><br>
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/child_data_day_07.csv">child_data_day_07.csv</a> — Early childhood survey day-07<br>
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/child_data_day_21.csv">child_data_day_21.csv</a> — Early childhood survey day-21 follow-up<br>
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/household_data.csv">household_data.csv</a> — Household-level context data</p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s task invites you to integrate **child survey data** at two time-points (Day 07 and Day 21) with **household context information**.  
+      These datasets capture early childhood indicators (nutritional, developmental, feeding practices) and household characteristics (socio-economic status, utilities, family composition), enabling a rich analysis of how household context influences child outcomes.
+    </p>
+    <p>
+      With these combined sources you can ask:
+      💡 How do child development indicators evolve from Day 07 to Day 21?  
+      💡 How does household context (e.g., income level, utilities access, family size) influence those changes?  
+      💡 Which children or households show unexpected trends — e.g., improvement despite constraints or vice-versa?
+    </p>
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>child_id</td><td>Unique identifier for each child</td></tr>
+      <tr><td>day</td><td>Time-point (07 or 21)</td></tr>
+      <tr><td>nutritional_score</td><td>Composite indicator of nutrition status</td></tr>
+      <tr><td>development_score</td><td>Composite indicator of developmental milestones</td></tr>
+      <tr><td>feeding_practice</td><td>Type of feeding practice reported</td></tr>
+      <tr><td>household_id</td><td>Identifier linking to household data</td></tr>
+      <tr><td>household_income</td><td>Household monthly income</td></tr>
+      <tr><td>utilities_access</td><td>Binary indicator: access to utilities (Yes/No)</td></tr>
+      <tr><td>family_size</td><td>Number of individuals in the household</td></tr>
+    </table>
+    <p><strong>💡 Note:</strong> These are anonymized household and child-level records intended for analytical practice and visualization.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>Create a <strong>Child & Household Insights Dashboard</strong> that answers:</p>
+    <ul>
+      <li>👶 How do nutritional and developmental scores change between Day 07 and Day 21?</li>
+      <li>🏠 Which household characteristics (income level, utilities, family size) are associated with greater improvements?</li>
+      <li>📊 Which children or households demonstrate unexpected trajectories — e.g., low income but high improvement?</li>
+    </ul>
+    <p>Your challenge is to merge the child survey data at two time-points with the household dataset, clean and calculate derived metrics, and create visuals that highlight dynamics, drivers, and outcomes.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Datasets</h3>
+    <p>
+      • R: <code>readr::read_csv("child_data_day_07.csv")</code>, <code>readr::read_csv("child_data_day_21.csv")</code>, <code>readr::read_csv("household_data.csv")</code><br>
+      • Python: <code>pd.read_csv("child_data_day_07.csv")</code>, <code>pd.read_csv("child_data_day_21.csv")</code>, <code>pd.read_csv("household_data.csv")</code><br>
+      • Power BI: Home → Get Data → Web/CSV → paste each GitHub raw link.
+    </p>
+    <p>Inspect each dataset for consistent IDs, missing values, and data types. Confirm that <code>household_id</code> links properly between child and household files.</p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Convert numeric fields (<code>nutritional_score</code>, <code>development_score</code>, <code>household_income</code>) to numeric types.</li>
+      <li>Create a combined table:
+        <ul>
+          <li>Merge Day 07 & Day 21 child data on <code>child_id</code>.</li>
+          <li>Compute <strong>Score Change = development_score_Day21 – development_score_Day07</strong>.</li>
+          <li>Join household_data by <code>household_id</code>.</li>
+        </ul>
+      </li>
+      <li>Create derived fields such as:
+        <ul>
+          <li>📈 Improvement Rate = (Score Change ÷ development_score_Day07) × 100</li>
+          <li>🏠 High SES Flag = (household_income > median income)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Using R (ggplot2/plotly/quarto), Python (matplotlib/plotly/dash), or Power BI, consider visuals such as:</p>
+    <ul>
+      <li>🔄 Bar Chart: Average Improvement Rate by SES group (High vs Low)</li>
+      <li>📊 Scatter Plot: Household Income vs Improvement Rate (bubble size = family_size)</li>
+      <li>🗺️ Map or Heat Table: Improvement Rate by region or utilities access (if region field exists)</li>
+      <li>📈 Line Chart: Nutritional vs Developmental Score change over time</li>
+      <li>💬 KPI Cards: Average Score Change, % of children with >10% improvement, Median household income</li>
+    </ul>
+    <p><strong>💡 Power BI Tip:</strong> Use slicers for utilities_access and family_size category. Use bookmarks to compare Day 07 vs Day 21 results.<br>
+    <strong>💡 R/Python Tip:</strong> Use interactive filters or dashboards to let users explore by household income bracket or utilities access.</p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>📊 Average Development Score Change</li>
+      <li>👥 % Children with Positive Improvement (>0)</li>
+      <li>👨‍👩‍👧‍👦 Median Household Income</li>
+      <li>🏠 % Households with Utilities Access</li>
+      <li>📉 Average Improvement Rate in Low-Income Households</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When you are done:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+      <code>#SIAnalytics30DayChallenge #DataVisualization #RStats #Python #PowerBI #ChildDevelopment #HouseholdData #DataForImpact</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or deploy to GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export an image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 14 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ submissions — share one actionable insight you learned.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 14 of the #SIAnalytics30DayChallenge 👶<br>
+      Merged child survey (Day 07 & Day 21) with household context data to explore how change in development scores is influenced by household income, utilities access and family size.<br>
+      The visuals reveal that children from smaller households with utilities access had the fastest improvement.<br>
+      #ChildDevelopment #DataForImpact #PowerBI #RStats #Python @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+
+</body>
+</html>
