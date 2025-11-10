@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 13 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .highlight {
+      color: #F59E0B;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>💉 SI Analytics 30-Day Data Visualization Challenge — Day 13</h1>
+  <h2>Total Health Spending per Person (USD): Health Expenditure & Outcomes Dashboard</h2>
+  <p><strong>📂 Dataset:</strong> <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/total_health_spending_per_person_us.csv">total_health_spending_per_person_us.csv</a></p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>total_health_spending_per_person_us.csv</strong> — provides country-level statistics on how much is spent on health care per person (in USD) over time.  
+      This data offers an opportunity to explore how **health expenditure** relates to **health outcomes**, **economic capacity**, and **global equity**.
+    </p>
+    <p>
+      With this dataset, you can ask questions like:  
+      💡 Does higher per-person health spending translate into better health outcomes or longer life expectancy?  
+      💡 How do spending patterns differ across income groups, regions, or time periods?  
+      💡 What are the outliers — countries that spend less or more for comparable outcomes?
+    </p>
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>country</td><td>Name of the country</td></tr>
+      <tr><td>year</td><td>Year of observation</td></tr>
+      <tr><td>health_spending_per_person_usd</td><td>Health care expenditure per person (USD)</td></tr>
+    </table>
+    <p><strong>💡 Note:</strong> Data may need alignment with outcome indicators (e.g., life expectancy, mortality) for deeper analysis.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>Create a <strong>Health Expenditure & Outcomes Dashboard</strong> that addresses:</p>
+    <ul>
+      <li>📊 How does per-person health spending vary across countries and over time?</li>
+      <li>💉 Is there a measurable relationship between health spending and key outcomes (e.g., life expectancy, infant/child mortality)?</li>
+      <li>🌍 Where are the spending outliers — high cost, low outcomes or low cost, high outcomes?</li>
+    </ul>
+    <p>Your job is to load the data, perform cleaning and transformation, and build visuals that help users explore spending trends, spend-vs-outcome relations, and global equity questions.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Dataset</h3>
+    <p>
+      • R: <code>readr::read_csv("total_health_spending_per_person_us.csv")</code><br>
+      • Python: <code>pd.read_csv("total_health_spending_per_person_us.csv")</code><br>
+      • Power BI: Home → Get Data → Web/CSV → paste GitHub raw link.
+    </p>
+    <p>Check variable names, review summary statistics, inspect spending distribution by country and year.</p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Convert <code>year</code> to integer/class and <code>health_spending_per_person_usd</code> to numeric.</li>
+      <li>Create grouped variables or filters such as:
+        <ul>
+          <li>Income group (e.g., Low, Middle, High) by country</li>
+          <li>Region (continent or sub-region) by country</li>
+        </ul>
+      </li>
+      <li>Calculate derived fields such as:
+        <ul>
+          <li>🔎 <strong>Spending Growth (%)</strong> = (current year spend - previous year spend) ÷ previous year spend</li>
+          <li>🔁 <strong>Spend per Outcome Ratio</strong> — if merged with life expectancy or mortality data: <code>spend_usd ÷ life_expectancy_years</code></li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Use R (ggplot2/plotly/quarto), Python (matplotlib/plotly/dash), or Power BI to build visuals such as:</p>
+    <ul>
+      <li>📈 Line Chart: Health spending per person over time by country or income group</li>
+      <li>🌍 Map: Global spending per person latest year (color-coded) and change over time</li>
+      <li>📊 Scatter Plot: Spending per person vs. life expectancy or other outcome (bubble size = population if available)</li>
+      <li>🏆 Bar Chart: Top 10 countries by health spending per person, and bottom 10</li>
+      <li>📋 KPI Cards: Average global spend per person, highest spending country, fastest growth country</li>
+    </ul>
+    <p><strong>💡 Tip for Power BI:</strong> Use time slicer or animation for “year” to show how spending evolves.  
+    <strong>💡 Tip for R/Python:</strong> Consider interactive dashboards using plotly or Shiny to allow filtering by region or income group.</p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>💰 Global Average Health Spending per Person</li>
+      <li>📈 Highest Health Spending Country (latest year)</li>
+      <li>📊 Country with Highest Spending Growth (%)</li>
+      <li>⏳ Average Growth Rate Since 2000 (or earliest year)</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When you are finished:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags: 
+        <code>#SIAnalytics30DayChallenge #DataVisualization #HealthAnalytics #RStats #Python #PowerBI #HealthSpending #GlobalHealth #DataForImpact</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or deploy to GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export a screenshot/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 13 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ submissions — share one actionable insight you learned.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 13 of the #SIAnalytics30DayChallenge 💉<br>
+      Built a health-expenditure dashboard mapping how much countries spend per person on health — and how that correlates with outcomes.<br>
+      The richest spenders are not always achieving the best outcomes — visuals reveal efficiency and equity gaps.<br>
+      #HealthAnalytics #DataForImpact #PowerBI #RStats #Python @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+
+</body>
+</html>
