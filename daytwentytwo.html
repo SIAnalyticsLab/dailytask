@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 22 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🎵 SI Analytics 30-Day Data Visualization Challenge — Day 22</h1>
+  <h2>YouTube Music Hits 2025: Global Trends & Artist Analytics Dashboard</h2>
+
+  <p><strong>📂 Dataset:</strong> 
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/youtube-top-100-songs-2025.csv">
+      youtube-top-100-songs-2025.csv
+    </a>
+  </p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>youtube-top-100-songs-2025.csv</strong> — captures the <strong>Top 100 songs on YouTube in 2025</strong>, 
+      showcasing the most streamed and culturally impactful music videos across the world.  
+      It includes key performance indicators such as <em>views, duration, tags, artists, and channel subscribers</em> — perfect for 
+      exploring global music trends, entertainment analytics, and audience engagement.
+    </p>
+    <p>
+      This dataset provides an exciting opportunity to analyze how music consumption varies by artist, genre, and geography — and how platforms like YouTube are shaping 
+      the global entertainment landscape.
+    </p>
+
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>rank</td><td>Song position on the Top 100 chart</td></tr>
+      <tr><td>song_title</td><td>Title of the music video</td></tr>
+      <tr><td>artist_channel</td><td>Artist or channel name</td></tr>
+      <tr><td>views</td><td>Total number of views on YouTube</td></tr>
+      <tr><td>duration</td><td>Length of the song (in seconds)</td></tr>
+      <tr><td>duration_formatted</td><td>Human-readable duration (e.g., 3:45)</td></tr>
+      <tr><td>tags</td><td>Associated tags such as genre or theme</td></tr>
+      <tr><td>category</td><td>Category of the video (e.g., Music, Entertainment)</td></tr>
+      <tr><td>channel_subscribers</td><td>Number of subscribers of the artist’s YouTube channel</td></tr>
+      <tr><td>channel_url</td><td>Link to the official YouTube channel</td></tr>
+      <tr><td>thumbnail_link</td><td>URL of the video’s thumbnail</td></tr>
+      <tr><td>live_status</td><td>Indicates if the video is currently live</td></tr>
+      <tr><td>description</td><td>Short description or metadata about the video</td></tr>
+    </table>
+
+    <p><strong>💡 Note:</strong> The dataset includes major artists such as <em>Billie Eilish, Bruno Mars, Lady Gaga, ROSÉ, and Reneé Rapp</em>, making it ideal for trend discovery, 
+    popularity analysis, and cultural storytelling through data.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>Create a <strong>YouTube Music Analytics Dashboard</strong> that answers:</p>
+    <ul>
+      <li>📈 Which artists or channels have the highest view counts?</li>
+      <li>🎤 How do song durations relate to total engagement (views and likes)?</li>
+      <li>🌍 What are the dominant genres and regions represented in the Top 100?</li>
+      <li>💫 How do subscriber counts correlate with video popularity?</li>
+      <li>📊 Which songs maintained the best view-to-subscriber ratio?</li>
+    </ul>
+    <p>Your goal is to visualize <strong>music performance metrics</strong> while revealing global entertainment insights — where data meets rhythm.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Dataset</h3>
+    <p>
+      • R: <code>readr::read_csv("youtube-top-100-songs-2025.csv")</code><br>
+      • Python: <code>pd.read_csv("youtube-top-100-songs-2025.csv")</code><br>
+      • Power BI: Home → Get Data → Text/CSV → paste GitHub raw link
+    </p>
+    <p>
+      Inspect missing values in <code>tags</code>, <code>category</code>, and <code>channel_subscribers</code>.  
+      Convert numeric fields such as <code>views</code> and <code>channel_subscribers</code> to numbers for accurate aggregation.
+    </p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Remove duplicates by <code>song_title</code> or <code>channel_url</code>.</li>
+      <li>Extract year, genre, and region info from <code>tags</code> using text parsing.</li>
+      <li>Create derived metrics:
+        <ul>
+          <li>🎧 <code>Views_per_Second = views / duration</code></li>
+          <li>⭐ <code>Engagement_Score = views / channel_subscribers</code></li>
+          <li>💥 <code>Top_Artists = count of songs per artist_channel</code></li>
+        </ul>
+      </li>
+      <li>Optional: group categories (e.g., Pop, K-pop, Hip-Hop, Latin, etc.) based on tags.</li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Visualize using R (ggplot2/plotly/quarto), Python (matplotlib/plotly/dash), or Power BI:</p>
+    <ul>
+      <li>📊 Bar Chart: Top 10 Artists by Total Views</li>
+      <li>🎶 Scatter Plot: Song Duration vs Views (size by Subscribers)</li>
+      <li>🌍 Donut Chart: Distribution of Genres from Tags</li>
+      <li>📈 Column Chart: Views per Category (Music, Dance, Entertainment)</li>
+      <li>💫 KPI Cards: Total Views, Average Duration, Total Channels, Average Engagement Score</li>
+      <li>🖼️ Optional: Display video thumbnails and clickable URLs for top 5 songs</li>
+    </ul>
+    <p>
+      <strong>💡 Power BI Tip:</strong> Add custom visuals like image viewer for thumbnails.  
+      <strong>💡 R/Python Tip:</strong> Use word clouds for <code>tags</code> to reveal trending genres or collaboration patterns.
+    </p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>🎬 Total Songs Analyzed (100)</li>
+      <li>👥 Total Combined Subscribers</li>
+      <li>📈 Total Global Views</li>
+      <li>🎤 Top Artist by Number of Entries</li>
+      <li>⏱️ Average Duration of Videos</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When finished:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, and mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #MusicAnalytics #PowerBI #RStats #Python #YouTubeAnalytics #DataVisualization #EntertainmentData #AnalyticsForImpact #DataStorytelling</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 22 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — highlight one that creatively visualizes storytelling through music data.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 22 of the #SIAnalytics30DayChallenge 🎵  
+      Built a YouTube Music Analytics Dashboard revealing 2025’s top hits and streaming trends.  
+      Discovered that artists like ROSÉ and Billie Eilish dominate engagement despite shorter video durations — showing that impact isn’t just about time, but connection.  
+      Data, like music, tells stories that transcend borders.  
+      #YouTubeAnalytics #MusicTrends #PowerBI #RStats #Python #DataStorytelling #AnalyticsForImpact @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+</body>
+</html>
