@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 19 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🛒 SI Analytics 30-Day Data Visualization Challenge — Day 19</h1>
+  <h2>Amazon Sales Dataset: E-Commerce Analytics & Product Review Dashboard</h2>
+
+  <p><strong>📂 Dataset:</strong> 
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/amazon.csv">
+      amazon.csv
+    </a>
+  </p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>amazon.csv</strong> — contains over <strong>1,000 Amazon product listings</strong>, ratings, prices, and customer reviews.  
+      It offers a rich foundation for exploring <strong>e-commerce data analytics, sentiment visualization, pricing patterns, and customer engagement metrics</strong>.
+    </p>
+    <p>
+      This dataset is ideal for understanding how <strong>price, discount, and reviews</strong> shape customer decisions — helping analysts develop insights into sales performance, product quality, and brand trust.
+    </p>
+
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>product_id</td><td>Unique identifier for each product</td></tr>
+      <tr><td>product_name</td><td>Name of the product</td></tr>
+      <tr><td>category</td><td>Product category (e.g., Electronics, Fashion, Beauty)</td></tr>
+      <tr><td>discounted_price</td><td>Current discounted price</td></tr>
+      <tr><td>actual_price</td><td>Original listed price before discount</td></tr>
+      <tr><td>discount_percentage</td><td>Discount rate in percentage</td></tr>
+      <tr><td>rating</td><td>Average product rating (typically 1–5)</td></tr>
+      <tr><td>rating_count</td><td>Number of people who rated the product</td></tr>
+      <tr><td>about_product</td><td>Short product description or key highlights</td></tr>
+      <tr><td>user_id</td><td>Reviewer’s user ID</td></tr>
+      <tr><td>user_name</td><td>Reviewer’s name</td></tr>
+      <tr><td>review_id</td><td>Unique review identifier</td></tr>
+      <tr><td>review_title</td><td>Short summary of review</td></tr>
+      <tr><td>review_content</td><td>Full customer review text</td></tr>
+      <tr><td>img_link</td><td>Image URL for the product</td></tr>
+      <tr><td>product_link</td><td>Official product page on Amazon</td></tr>
+    </table>
+
+    <p><strong>💡 Note:</strong> This dataset enables end-to-end retail analytics — from product pricing optimization to customer satisfaction monitoring.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Create an <strong>Amazon E-Commerce Dashboard</strong> that answers:
+    </p>
+    <ul>
+      <li>💰 How do discounts and prices influence customer ratings?</li>
+      <li>⭐ Which products have the best (and worst) reviews?</li>
+      <li>📦 Which categories generate the most engagement (ratings and reviews)?</li>
+      <li>📈 How does price distribution vary across categories?</li>
+      <li>🧠 What are the common words or sentiments in reviews?</li>
+    </ul>
+    <p>
+      Your goal is to create a dashboard that blends <strong>sales, pricing, and sentiment analytics</strong> — turning raw data into insight-driven retail storytelling.
+    </p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Dataset</h3>
+    <p>
+      • R: <code>readr::read_csv("amazon.csv")</code><br>
+      • Python: <code>pd.read_csv("amazon.csv")</code><br>
+      • Power BI: Home → Get Data → Text/CSV → paste GitHub raw link
+    </p>
+    <p>Inspect data types, null values, and potential text truncations in product names or reviews.</p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Convert <code>discounted_price</code> and <code>actual_price</code> to numeric types (remove “₹” or “,”).</li>
+      <li>Ensure <code>discount_percentage</code> is numeric and consistent.</li>
+      <li>Handle missing <code>review_content</code> or <code>rating</code> with imputation or “Not Rated”.</li>
+      <li>Create derived fields:
+        <ul>
+          <li>💸 <code>Discount_Gap = actual_price - discounted_price</code></li>
+          <li>📊 <code>Review_Ratio = rating_count / max(rating_count)</code></li>
+          <li>🧠 Optional NLP metric: Sentiment polarity of <code>review_content</code></li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Visualize using R (ggplot2/plotly/quarto), Python (plotly/dash), or Power BI:</p>
+    <ul>
+      <li>📈 Bar Chart: Average discount percentage by category</li>
+      <li>💬 Donut Chart: Distribution of customer ratings (1–5 stars)</li>
+      <li>📊 Scatter Plot: Actual vs Discounted Price (size by rating_count)</li>
+      <li>📦 Column Chart: Top 10 most-reviewed products</li>
+      <li>🧭 Word Cloud: Frequent words in review_content</li>
+      <li>🧮 KPI Cards: Average Discount, Average Rating, Total Reviews, Best-Rated Product</li>
+    </ul>
+    <p><strong>💡 Power BI Tip:</strong> Use conditional color formatting — green for high discounts, gold for high ratings.  
+       <strong>💡 R/Python Tip:</strong> Create sentiment bins (Positive, Neutral, Negative) and visualize review polarity.</p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>💰 Average Discount Percentage</li>
+      <li>⭐ Average Product Rating</li>
+      <li>🧾 Total Reviews</li>
+      <li>🏆 Top Product by Rating</li>
+      <li>📦 Category with Most Reviews</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When you are done:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, and mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #DataVisualization #PowerBI #RStats #Python #EcommerceAnalytics #AmazonData #RetailInsights #AnalyticsForImpact #DataStorytelling</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or deploy to GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 19 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — highlight one creative visualization or business insight.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 19 of the #SIAnalytics30DayChallenge 🛒<br>
+      Built an Amazon Sales Dashboard uncovering trends in product pricing, discounts, and customer satisfaction.  
+      Found that higher discounts often drive reviews but don’t always guarantee higher ratings — proof that value and experience matter most.  
+      Turning retail data into insight is how we translate customer behavior into business strategy.  
+      #EcommerceAnalytics #PowerBI #RStats #Python #DataStorytelling #AnalyticsForImpact @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+</body>
+</html>
