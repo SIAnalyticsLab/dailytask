@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 11 – SI Analytics 30-Day Data Visualization Challenge</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+    color: #0F172A;
+    background-color: #FFFFFF;
+    margin: 40px;
+  }
+  h1, h2, h3 {
+    color: #0F766E;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+  }
+  h2 {
+    border-bottom: 2px solid #0EA5E9;
+    padding-bottom: 6px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+  }
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  th {
+    background-color: #0EA5E9;
+    color: white;
+    padding: 8px;
+  }
+  td {
+    padding: 8px;
+  }
+  code {
+    background-color: #F1F5F9;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+  .section {
+    margin-bottom: 40px;
+  }
+  .highlight {
+    color: #F59E0B;
+    font-weight: bold;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid #E2E8F0;
+    text-align: center;
+    color: #475569;
+  }
+</style>
+</head>
+
+<body>
+<h1>🌍 SI Analytics 30-Day Data Visualization Challenge — Day 11</h1>
+<h2>Global Development Dataset: Life Expectancy, GDP, and Population Dashboard</h2>
+<p><strong>📂 Datasets:</strong><br>
+<a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/lex.csv">lex.csv</a> — Life Expectancy Data<br>
+<a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/gdp_pcap.csv">gdp_pcap.csv</a> — GDP per Capita Data<br>
+<a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/pop.csv">pop.csv</a> — Population Data</p>
+
+<hr>
+
+<div class="section">
+<h2>🧩 Background</h2>
+<p>
+Today’s challenge brings together three complementary datasets — <strong>Life Expectancy (lex.csv)</strong>, <strong>GDP per Capita (gdp_pcap.csv)</strong>, and <strong>Population (pop.csv)</strong> — providing a comprehensive picture of global human development over time.
+These datasets capture socioeconomic and demographic patterns across multiple countries and regions, offering a perfect opportunity to explore <strong>inequality, growth, and longevity</strong> through visualization.
+</p>
+
+<p>
+By merging these datasets, participants can uncover how <strong>economic progress</strong> relates to <strong>population trends</strong> and <strong>life expectancy outcomes</strong> — enabling powerful insights into sustainable development and public policy performance.
+</p>
+
+<p><strong>📄 Dataset Overview:</strong></p>
+<table>
+<tr><th>Variable</th><th>Description</th></tr>
+<tr><td>country</td><td>Name of the country</td></tr>
+<tr><td>year</td><td>Year of observation</td></tr>
+<tr><td>lifeExp</td><td>Average life expectancy (years)</td></tr>
+<tr><td>gdpPercap</td><td>Gross Domestic Product per capita (USD)</td></tr>
+<tr><td>pop</td><td>Total population</td></tr>
+</table>
+
+<p><strong>💡 The goal:</strong> To visualize how development indicators — health, income, and population — evolve across countries and regions over time.</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>🎯 Daily Task Objective</h2>
+<p>
+Create a <strong>Global Development Dashboard</strong> that answers:
+</p>
+<ul>
+<li>🌍 How do <strong>life expectancy</strong> and <strong>GDP per capita</strong> relate across countries?</li>
+<li>📈 Which countries show the most improvement in development indicators over time?</li>
+<li>👨‍👩‍👧‍👦 How does <strong>population size</strong> influence life expectancy and economic growth?</li>
+</ul>
+<p>
+Your task is to combine the three datasets, clean and align them by <code>country</code> and <code>year</code>, and visualize how development metrics interact globally and regionally.
+</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>🧮 Step-by-Step Instructions</h2>
+
+<h3>1️⃣ Load and Explore the Datasets</h3>
+<p>
+<ul>
+<li><strong>R:</strong> <code>read_csv("lex.csv")</code>, <code>read_csv("gdp_pcap.csv")</code>, <code>read_csv("pop.csv")</code></li>
+<li><strong>Python:</strong> <code>pd.read_csv("lex.csv")</code>, <code>pd.read_csv("gdp_pcap.csv")</code>, <code>pd.read_csv("pop.csv")</code></li>
+<li><strong>Power BI:</strong> Home → Get Data → Web → paste GitHub raw links for each dataset.</li>
+</ul>
+Merge on <code>country</code> and <code>year</code> to create one unified dataset.
+</p>
+
+<h3>2️⃣ Clean and Prepare</h3>
+<ul>
+<li>Ensure all datasets share consistent <code>country</code> and <code>year</code> values.</li>
+<li>Convert GDP per capita and population to numeric types.</li>
+<li>Create derived fields:
+  <ul>
+    <li>🌐 <strong>Total GDP</strong> = <code>gdpPercap × pop</code></li>
+    <li>💹 <strong>GDP Growth (%)</strong> by year per country</li>
+    <li>💫 <strong>Life Expectancy Change</strong> (current year − previous year)</li>
+  </ul>
+</li>
+</ul>
+
+<h3>3️⃣ Build Your Dashboard</h3>
+<p>Use <strong>R (ggplot2/plotly/quarto)</strong>, <strong>Python (matplotlib/plotly/dash)</strong>, or <strong>Power BI</strong> to visualize:</p>
+<ul>
+<li>📊 Scatter Plot: GDP per capita vs Life Expectancy (bubble size = Population)</li>
+<li>🗺️ Map: Average Life Expectancy by Country</li>
+<li>📈 Line Chart: Trends in GDP and Life Expectancy over time</li>
+<li>🏆 Bar Chart: Top 10 countries with highest life expectancy or GDP</li>
+<li>💬 KPI Cards: Average global GDP, life expectancy, and population</li>
+</ul>
+<p><strong>💡 Power BI Tip:</strong> Use “Play Axis” or “Animation” to visualize temporal trends dynamically.<br>
+<strong>💡 R/Python Tip:</strong> Create an interactive dashboard with <code>plotly</code> or <code>gganimate</code> to show development trajectories over time.</p>
+
+<h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+<ul>
+<li>🌍 Global Average Life Expectancy</li>
+<li>💰 Global Average GDP per Capita</li>
+<li>👨‍👩‍👧‍👦 Total Global Population</li>
+<li>📈 % Growth in Life Expectancy since 2000</li>
+<li>💹 % GDP Growth since 2000</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>🚀 Sharing Your Output</h2>
+<p>When done:</p>
+<ol>
+<li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+<li>Tag <strong>@SIAnalyticsLab</strong>, <strong>@SIAnalytics</strong>, or <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+<li>Include hashtags:
+<br><code>#SIAnalytics30DayChallenge #DataVisualization #RStats #Python #PowerBI #GlobalDevelopment #GDP #LifeExpectancy #PopulationAnalytics</code></li>
+</ol>
+
+<p><strong>💾 Hosting Options:</strong></p>
+<ul>
+<li>R/Python: Publish via Quarto Dashboard or GitHub Pages.</li>
+<li>Power BI: Publish to Power BI Service or export as image/PDF for sharing.</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>🗓️ Deadline</h2>
+<p>Submit your Day 11 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+<p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — share one insight that inspired you.</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>💬 Example Post Caption</h2>
+<p>
+“Day 11 of the #SIAnalytics30DayChallenge 🌍  
+Today, I built a Global Development Dashboard combining Life Expectancy, GDP, and Population data.  
+The visuals reveal how economic growth and longevity are linked — yet uneven across regions.  
+Every dataset tells a human story — of progress, disparity, and resilience.  
+#RStats #Python #PowerBI #GlobalDevelopment #DataForImpact @SIAnalyticsLab @SIAnalytics”
+</p>
+</div>
+
+<div class="footer">
+<p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+</div>
+
+</body>
+</html>
