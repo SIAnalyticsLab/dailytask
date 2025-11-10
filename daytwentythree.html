@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 23 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🧬 SI Analytics 30-Day Data Visualization Challenge — Day 23</h1>
+  <h2>Global HIV Epidemiology Dashboard: New Infections, Total Cases & Population Trends</h2>
+
+  <p><strong>📂 Datasets:</strong></p>
+  <ul>
+    <li><a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/hiv_new_cases.csv">hiv_new_cases.csv</a> — New HIV infections by country and year</li>
+    <li><a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/hiv_total_cases.csv">hiv_total_cases.csv</a> — Total people living with HIV</li>
+    <li><a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/world_pop_year.csv">world_pop_year.csv</a> — Global population by country and year</li>
+  </ul>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      HIV remains one of the most significant global health challenges of the 21st century.  
+      Understanding infection trends, total burden, and demographic context is essential for evidence-based policymaking and targeted interventions.
+    </p>
+    <p>
+      Today’s task combines <strong>three key datasets</strong> — new HIV infections, total people living with HIV, and world population — to visualize 
+      how HIV prevalence and incidence rates vary by region and over time.
+    </p>
+
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Dataset</th><th>Key Variables</th><th>Description</th></tr>
+      <tr>
+        <td>hiv_new_cases.csv</td>
+        <td>Country, Year, New_Cases</td>
+        <td>Number of newly reported HIV infections annually</td>
+      </tr>
+      <tr>
+        <td>hiv_total_cases.csv</td>
+        <td>Country, Year, Total_Cases</td>
+        <td>Total number of people living with HIV (PLHIV)</td>
+      </tr>
+      <tr>
+        <td>world_pop_year.csv</td>
+        <td>Country, Year, Population</td>
+        <td>World population estimates by country and year</td>
+      </tr>
+    </table>
+
+    <p>
+      These datasets can be combined to calculate key epidemiological indicators such as <strong>incidence rate</strong> and <strong>prevalence rate</strong> per 100,000 population.
+    </p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>Create a <strong>Global HIV Epidemiology Dashboard</strong> that answers:</p>
+    <ul>
+      <li>📈 How have HIV new infections and total cases evolved globally over time?</li>
+      <li>🌍 Which regions or countries have the highest HIV prevalence rates?</li>
+      <li>📊 How do HIV trends relate to population growth and demographic changes?</li>
+      <li>📉 Are there countries showing consistent progress toward epidemic control?</li>
+      <li>💡 How can we visualize “new infections per 100,000” to show regional disparities?</li>
+    </ul>
+    <p>Your goal is to build an interactive, multi-page dashboard that highlights HIV trends with context — turning data into a global story of progress and gaps.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Merge Datasets</h3>
+    <p>
+      • R: <code>readr::read_csv()</code> for each file and join by <code>Country</code> and <code>Year</code><br>
+      • Python: <code>pd.read_csv()</code> and <code>pd.merge()</code> by <code>Country</code> and <code>Year</code><br>
+      • Power BI: Load all three CSVs → Model view → Create relationships using Country and Year
+    </p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Check for missing or inconsistent country names and harmonize them.</li>
+      <li>Convert all numeric fields (<code>New_Cases</code>, <code>Total_Cases</code>, <code>Population</code>) to numeric data types.</li>
+      <li>Create derived metrics:
+        <ul>
+          <li>📊 <code>Incidence_Rate = (New_Cases / Population) * 100000</code></li>
+          <li>📉 <code>Prevalence_Rate = (Total_Cases / Population) * 100000</code></li>
+          <li>📈 <code>Yearly_Change = (New_Cases - lag(New_Cases)) / lag(New_Cases)</code> (optional for trend analysis)</li>
+        </ul>
+      </li>
+      <li>Ensure time series continuity (fill missing years where possible).</li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Use R (ggplot2/plotly/quarto), Python (matplotlib/plotly/dash), or Power BI to visualize:</p>
+    <ul>
+      <li>🌍 Map: HIV Prevalence per 100,000 by country</li>
+      <li>📊 Line Chart: Global new HIV infections over time</li>
+      <li>📈 Area Chart: Total people living with HIV (PLHIV) by region</li>
+      <li>🧩 Scatter Plot: Population vs HIV burden</li>
+      <li>📉 Bar Chart: Top 10 countries with the highest incidence rates</li>
+      <li>🕒 Timeline: Yearly change in new infections</li>
+    </ul>
+    <p>
+      <strong>💡 Power BI Tip:</strong> Create a navigation bar with tabs for “Global Overview,” “Regional Trends,” and “Country Profiles.”  
+      <strong>💡 R/Python Tip:</strong> Use color gradients (e.g., red → yellow → green) to represent incidence intensity.
+    </p>
+
+    <h3>4️⃣ Add KPI Cards</h3>
+    <ul>
+      <li>🌍 Total Population (latest year)</li>
+      <li>🧬 Total People Living with HIV (latest year)</li>
+      <li>📈 Total New HIV Infections</li>
+      <li>📊 Global Prevalence Rate (per 100k)</li>
+      <li>📉 Change in New Infections (YoY %)</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When finished:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, and mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #PublicHealthAnalytics #DataVisualization #PowerBI #RStats #Python #HIVEpidemiology #GlobalHealth #AnalyticsForImpact #DataStorytelling</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export a static image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 23 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — highlight one that best communicates global health trends visually.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 23 of the #SIAnalytics30DayChallenge 🧬  
+      Built a Global HIV Epidemiology Dashboard showing new infections, total cases, and population-adjusted prevalence rates.  
+      The visualizations reveal strong progress in many African countries but highlight rising trends in Eastern Europe and Asia.  
+      Data like this helps shape global action and measure impact toward ending HIV as a public health threat.  
+      #HIVData #GlobalHealth #DataForDevelopment #PowerBI #RStats #Python #AnalyticsForImpact @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+</body>
+</html>
