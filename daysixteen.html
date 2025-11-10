@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 16 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🎓 SI Analytics 30-Day Data Visualization Challenge — Day 16</h1>
+  <h2>Student Performance Dataset: Education Analytics & Academic Outcomes Dashboard</h2>
+
+  <p><strong>📂 Dataset:</strong> 
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/StudentsPerformance_with_headers.csv">
+      StudentsPerformance_with_headers.csv
+    </a>
+  </p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>StudentsPerformance_with_headers.csv</strong> — captures demographic, socio-economic, and academic data on student exam scores in <strong>Math, Reading, and Writing</strong>.  
+      It provides a great opportunity to explore how factors such as gender, parental education, lunch status, and test preparation influence academic outcomes.
+    </p>
+    <p>
+      The goal is to uncover the drivers of student performance and identify actionable insights for educators, policymakers, and parents.
+    </p>
+
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>gender</td><td>Student’s gender (male/female)</td></tr>
+      <tr><td>race/ethnicity</td><td>Student’s ethnic group</td></tr>
+      <tr><td>parental level of education</td><td>Highest level of education attained by parents</td></tr>
+      <tr><td>lunch</td><td>Type of lunch received (standard or free/reduced)</td></tr>
+      <tr><td>test preparation course</td><td>Completion status of test preparation (none/completed)</td></tr>
+      <tr><td>math score</td><td>Score in math exam</td></tr>
+      <tr><td>reading score</td><td>Score in reading exam</td></tr>
+      <tr><td>writing score</td><td>Score in writing exam</td></tr>
+    </table>
+    <p><strong>💡 Note:</strong> Data has been anonymized and standardized for educational data analytics exercises.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>
+      Create a <strong>Student Performance Dashboard</strong> that answers:
+    </p>
+    <ul>
+      <li>📊 What factors most strongly influence student achievement?</li>
+      <li>🎓 How do exam outcomes vary by gender, ethnicity, and parental education?</li>
+      <li>🍱 Does lunch type or test preparation completion improve overall performance?</li>
+      <li>📈 What relationships exist among math, reading, and writing scores?</li>
+    </ul>
+    <p>
+      This task emphasizes data cleaning, correlation analysis, and education-focused visualization to communicate the story behind academic performance.
+    </p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Dataset</h3>
+    <p>
+      • R: <code>readr::read_csv("StudentsPerformance_with_headers.csv")</code><br>
+      • Python: <code>pd.read_csv("StudentsPerformance_with_headers.csv")</code><br>
+      • Power BI: Home → Get Data → Web/CSV → paste GitHub raw link
+    </p>
+    <p>Inspect the variables and check for missing values or inconsistent capitalization in categories.</p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Ensure all categorical variables are formatted consistently (e.g., "female" → "Female").</li>
+      <li>Create a new variable: <code>average_score = (math + reading + writing)/3</code>.</li>
+      <li>Derive new groups:
+        <ul>
+          <li>🎯 <strong>Performance Level</strong> = High (≥80), Medium (60–79), Low (<60)</li>
+          <li>🎓 <strong>Education Level Group</strong> = High School, College, Postgraduate</li>
+        </ul>
+      </li>
+      <li>Check relationships and correlations among the three scores.</li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Using R (ggplot2/plotly/quarto), Python (matplotlib/plotly/dash), or Power BI, create visuals such as:</p>
+    <ul>
+      <li>📊 Bar Chart: Average score by parental education level</li>
+      <li>📈 Scatter Plot: Math vs Reading scores (colored by gender)</li>
+      <li>🧮 Heatmap: Correlation between math, reading, and writing</li>
+      <li>🎯 Donut Chart: Distribution of performance levels (High/Medium/Low)</li>
+      <li>💬 KPI Cards: Average overall score, % completing test prep, gender gap in performance</li>
+    </ul>
+    <p><strong>💡 Power BI Tip:</strong> Add slicers for gender, parental education, and lunch type.  
+       <strong>💡 R/Python Tip:</strong> Use color palettes (teal → amber → deep blue) for readability and brand consistency.</p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>📘 Average Math Score</li>
+      <li>📗 Average Reading Score</li>
+      <li>📙 Average Writing Score</li>
+      <li>📈 Average Overall Performance (%)</li>
+      <li>🎓 % of Students Who Completed Test Prep</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When you are done:</p>
+    <ol>
+      <li>Share your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, and mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #DataVisualization #RStats #Python #PowerBI #EducationAnalytics #DataStorytelling #AnalyticsForImpact</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or deploy to GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export an image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 16 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — highlight one insight or visualization you found valuable.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 16 of the #SIAnalytics30DayChallenge 🎓<br>
+      Built a Student Performance Dashboard visualizing how parental education, gender, and test prep influence math, reading, and writing outcomes.  
+      Insights revealed that completing test preparation and higher parental education levels significantly improved overall performance.  
+      Data helps us tell stories that can shape better education outcomes.  
+      #EducationAnalytics #DataForImpact #PowerBI #RStats #Python @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+</body>
+</html>
