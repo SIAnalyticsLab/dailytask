@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 17 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🎬 SI Analytics 30-Day Data Visualization Challenge — Day 17</h1>
+  <h2>Netflix Titles Dataset: Content Analytics & Global Entertainment Dashboard</h2>
+
+  <p><strong>📂 Dataset:</strong> 
+    <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/netflix_titles.csv">
+      netflix_titles.csv
+    </a>
+  </p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>netflix_titles.csv</strong> — is a fascinating look into the world of digital entertainment.  
+      It contains metadata about movies and TV shows available on Netflix, including title, director, cast, country, release year, rating, and genre.
+    </p>
+    <p>
+      This dataset provides a great opportunity to explore questions around **content trends**, **genre diversity**, **production geography**, and **evolution of streaming media** over time.  
+      You’ll use it to build a data-driven narrative about what Netflix offers — and how global storytelling is changing.
+    </p>
+
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>show_id</td><td>Unique identifier for each title</td></tr>
+      <tr><td>type</td><td>Whether the title is a Movie or TV Show</td></tr>
+      <tr><td>title</td><td>Name of the show or movie</td></tr>
+      <tr><td>director</td><td>Director(s) of the title</td></tr>
+      <tr><td>cast</td><td>Main cast members</td></tr>
+      <tr><td>country</td><td>Country where the show/movie was produced</td></tr>
+      <tr><td>date_added</td><td>Date added to Netflix platform</td></tr>
+      <tr><td>release_year</td><td>Year the title was released</td></tr>
+      <tr><td>rating</td><td>Content rating (e.g., PG-13, TV-MA)</td></tr>
+      <tr><td>duration</td><td>Runtime (minutes for movies or seasons for series)</td></tr>
+      <tr><td>listed_in</td><td>Genre(s) of the title</td></tr>
+      <tr><td>description</td><td>Short synopsis of the content</td></tr>
+    </table>
+    <p><strong>💡 Note:</strong> Dataset was curated from Netflix’s public catalogue listings and is ideal for portfolio-level analytics and visualization exercises.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>Create a <strong>Netflix Content Analytics Dashboard</strong> that answers:</p>
+    <ul>
+      <li>🎥 What is the distribution of content types (Movies vs TV Shows)?</li>
+      <li>🌍 Which countries produce the most Netflix content?</li>
+      <li>📅 How has content production evolved by year and genre?</li>
+      <li>⭐ What are the most common ratings, durations, and genres?</li>
+      <li>👩‍🎬 Who are the top directors and actors with the most Netflix titles?</li>
+    </ul>
+    <p>Your dashboard should provide a comprehensive overview of Netflix’s global catalogue — highlighting diversity, trends, and audience focus areas.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Dataset</h3>
+    <p>
+      • R: <code>readr::read_csv("netflix_titles.csv")</code><br>
+      • Python: <code>pd.read_csv("netflix_titles.csv")</code><br>
+      • Power BI: Home → Get Data → Web/CSV → paste GitHub raw link
+    </p>
+    <p>Check data quality, duplicates, and missing values (especially in <code>director</code> and <code>cast</code> columns).</p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Convert <code>date_added</code> to datetime and extract year/month.</li>
+      <li>Create derived fields:
+        <ul>
+          <li>📅 <code>Years_on_Platform = 2025 – release_year</code></li>
+          <li>🎞 <code>Content_Count by Type and Year</code></li>
+          <li>🌎 Region categories based on country (e.g., North America, Asia, Europe)</li>
+        </ul>
+      </li>
+      <li>Handle missing values with “Unknown” categories.</li>
+      <li>Split genres in <code>listed_in</code> to allow multi-category analysis (using Text.Split in Power Query or string methods in Python).</li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Use R (ggplot2/plotly/quarto), Python (matplotlib/plotly/dash), or Power BI to create visuals such as:</p>
+    <ul>
+      <li>🍿 Bar Chart: Count of Movies vs TV Shows by Year Added</li>
+      <li>🌍 Map: Number of titles by Country of Production</li>
+      <li>📈 Line Chart: Trend of New Titles Added per Year</li>
+      <li>🎭 Treemap or Donut Chart: Top Genres on Netflix</li>
+      <li>⭐ Column Chart: Distribution of Content Ratings (TV-MA, PG-13, etc.)</li>
+      <li>🧾 Table: Top Directors/Actors with the Most Titles</li>
+    </ul>
+    <p><strong>💡 Power BI Tip:</strong> Use slicers for Year, Type, and Genre to make the dashboard interactive.<br>
+       <strong>💡 R/Python Tip:</strong> Use word clouds or bubble charts to visualize popular actors or directors.</p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>🎥 Total Netflix Titles</li>
+      <li>📺 % Movies vs % TV Shows</li>
+      <li>🌎 Top 3 Producing Countries</li>
+      <li>🎬 Most Popular Genre (Category Count)</li>
+      <li>📅 Average Release Year and Average Years on Platform</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When you are done:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, and mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #DataVisualization #PowerBI #RStats #Python #NetflixData #EntertainmentAnalytics #DataStorytelling #AnalyticsForImpact</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto Dashboard or deploy to GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 17 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — share one insight you found interesting or creative.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 17 of the #SIAnalytics30DayChallenge 🎬<br>
+      Built a Netflix Content Analytics Dashboard to analyze over 8 000 titles — revealing how the platform evolved from Hollywood dominance to global storytelling diversity.  
+      The data shows India and South Korea as rising content producers while thrillers and comedies remain the most watched genres.  
+      Each dataset is a story of culture, creativity and connection.  
+      #DataVisualization #PowerBI #RStats #Python #NetflixAnalytics @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+</body>
+</html>
