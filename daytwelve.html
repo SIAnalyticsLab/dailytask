@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 12 – SI Analytics 30-Day Data Visualization Challenge</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #0F766E;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    h2 {
+      border-bottom: 2px solid #0EA5E9;
+      padding-bottom: 6px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0EA5E9;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+    code {
+      background-color: #F1F5F9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .highlight {
+      color: #F59E0B;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 2px solid #E2E8F0;
+      text-align: center;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🏍️ SI Analytics 30-Day Data Visualization Challenge — Day 12</h1>
+  <h2>Motorcycle Accidents Dataset (Colombia): Road-Safety & Incident Data Dashboard</h2>
+  <p><strong>📂 Dataset:</strong> <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/motorcycle_accidents_colombia.csv">motorcycle_accidents_colombia.csv</a></p>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧩 Background</h2>
+    <p>
+      Today’s dataset — <strong>motorcycle_accidents_colombia.csv</strong> — captures incident records of motorcycle crashes and accidents in Colombia, including details such as location, severity, type of accident, rider demographics, and contextual conditions (road, weather, time).  
+      This data offers an excellent opportunity to build an analytics dashboard around <strong>road safety</strong>, <strong>incident severity</strong>, and <strong=vulnerability of motorcyclists</strong> in a middle-income country context.
+    </p>
+    <p>
+      By visualizing this dataset you’ll be able to explore questions like:  
+      💡 Which road types and times of day have the highest motorcycle accident rates?  
+      💡 How do severity levels distribute by rider age, gender, or region?  
+      💡 Can patterns in infrastructure, weather or vehicle type point to actionable policy or safety interventions?
+    </p>
+    <p><strong>📄 Dataset Overview:</strong></p>
+    <table>
+      <tr><th>Variable</th><th>Description</th></tr>
+      <tr><td>accident_id</td><td>Unique identifier for each crash event</td></tr>
+      <tr><td>date</td><td>Date of the accident</td></tr>
+      <tr><td>city / region</td><td>Geographic location of the crash</td></tr>
+      <tr><td>rider_age</td><td>Age of motorcyclist involved</td></tr>
+      <tr><td>rider_gender</td><td>Gender of motorcyclist</td></tr>
+      <tr><td>severity</td><td>Level of outcome: damage only / injury / fatality</td></tr>
+      <tr><td>road_type</td><td>Type or condition of road</td></tr>
+      <tr><td>weather_condition</td><td>Weather at time of crash</td></tr>
+      <tr><td>vehicle_type</td><td>Type of motorcycle or other vehicle involvement</td></tr>
+      <tr><td>other_factors</td><td>Context fields (e.g., time of day, lighting, etc.)</td></tr>
+    </table>
+    <p><strong>💡 Note:</strong> The dataset is anonymized and ethically sourced for open-data research.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🎯 Daily Task Objective</h2>
+    <p>Create a <strong>Motorcycle Accidents & Road Safety Dashboard</strong> that answers:</p>
+    <ul>
+      <li>📍 Where and when do motorcycle accidents occur most frequently in Colombia?</li>
+      <li>🧑‍🚦 Which rider age and gender groups face the highest severity of incidents?</li>
+      <li>🛣 Which combinations of road type, weather condition, and time of day correlate with higher fatality or injury rates?</li>
+    </ul>
+    <p>Your task is to load the data, prepare it, and build visuals that support these questions. Use interactive filtering (city, severity, time of day) so the user can drill into high-risk segments.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load and Explore the Dataset</h3>
+    <p>
+      • R: <code>readr::read_csv("motorcycle_accidents_colombia.csv")</code> <br>
+      • Python: <code>pd.read_csv("motorcycle_accidents_colombia.csv")</code> <br>
+      • Power BI: Home → Get Data → Text/CSV → Select the file or paste GitHub raw link.
+    </p>
+    <p>Explore variable names, check for missing values, and review key descriptive statistics (counts by severity, rider age distributions, etc.).</p>
+
+    <h3>2️⃣ Clean and Prepare</h3>
+    <ul>
+      <li>Convert the <code>date</code> column to date/time format.</li>
+      <li>Create categories or bins: e.g., <em>time of day</em> (morning/afternoon/night), rider age groups (e.g., <20, 20-39, 40+).</li>
+      <li>Create derived fields such as:
+        <ul>
+          <li>⚠️ <strong>HighSeverity</strong> = (severity = "fatality" or severity = "injury")</li>
+          <li>⏱ <strong>HourOfDay</strong> derived from date/time</li>
+        </ul>
+      </li>
+      <li>Group data by city/region to calculate:
+        <ul>
+          <li>Total accidents, injury/fatality counts</li>
+          <li>Accident rate per 100 000 motorcycles (if vehicle count available)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard</h3>
+    <p>Whether you’re using <strong>R (ggplot2/plotly/quarto)</strong>, <strong>Python (matplotlib/plotly/dash)</strong>, or <strong>Power BI</strong>, consider these visuals:</p>
+    <ul>
+      <li>🗺️ Map of Colombia (or city-level) showing accident hotspots (size = count, color = severity)</li>
+      <li>📊 Bar Chart: Number of accidents by severity and rider age group</li>
+      <li>🕒 Line or Area Chart: Accidents by hour of day or day of week</li>
+      <li>🔍 Scatter Plot: Road-type vs severity, colored by weather condition</li>
+      <li>💬 KPI Cards: Total accidents, % fatal, average age of rider, most common road type involved</li>
+    </ul>
+    <p><strong>💡 Tip for Power BI:</strong> Use slicers for city/region and severity level. Use bookmarks to capture key story states (e.g., “Fatalities only”).<br>
+    <strong>💡 Tip for R/Python:</strong> Use interactive libraries (plotly, Shiny, Dash) to allow the user to hover/filter by variables.</p>
+
+    <h3>4️⃣ Add Key Metrics / KPI Cards</h3>
+    <ul>
+      <li>🏍️ Total motorcycle accidents</li>
+      <li>🔺 Number or % of accidents resulting in injury or fatality</li>
+      <li>👨‍🚦 Average rider age</li>
+      <li>🌃 Accidents during night vs day</li>
+      <li>📍 Region/city with highest accident rate</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🚀 Sharing Your Output</h2>
+    <p>When you’re done:</p>
+    <ol>
+      <li>Post your dashboard screenshot or link on LinkedIn, X (Twitter), Instagram, or Facebook.</li>
+      <li>Tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>, or mention <strong>Strategic Insights and Analytics (SI Analytics)</strong>.</li>
+      <li>Include hashtags: 
+        <code>#SIAnalytics30DayChallenge #DataVisualization #RStats #Python #PowerBI #RoadSafety #MotorcycleAccidents #LatinAmerica #InjuryPrevention</code>
+      </li>
+    </ol>
+    <p><strong>💾 Hosting Options:</strong></p>
+    <ul>
+      <li>R/Python: Publish via Quarto (or Shiny) or GitHub Pages.</li>
+      <li>Power BI: Publish to Power BI Service or export an image/PDF for sharing.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>🗓️ Deadline</h2>
+    <p>Submit your Day 12 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+    <p><strong>✅ Community Rule:</strong> Review and comment on at least 10 other participants’ dashboards — share one insight that you found compelling.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💬 Example Post Caption</h2>
+    <p>
+      “Day 12 of the #SIAnalytics30DayChallenge 🏍️<br>
+      Built a road-safety dashboard for motorcycle accidents in Colombia — visualizing hotspots, severity by rider age, and risk factors like road type and lighting.<br>
+      Every data point reveals a story about vulnerability, infrastructure, and prevention.<br>
+      #RoadSafety #MotorcycleAccidents #DataForImpact #PowerBI #RStats #Python @SIAnalyticsLab @SIAnalytics”
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+  </div>
+
+</body>
+</html>
