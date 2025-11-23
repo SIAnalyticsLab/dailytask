@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SI Analytics 30-Day Challenge — Day 24</title>
+<style>
+ body {
+   font-family: "Inter", sans-serif;
+   margin: 0;
+   background: #0F172A;
+   color: #ffffff;
+   line-height: 1.7;
+   padding-bottom: 50px;
+ }
+ h1, h2, h3 {
+   font-family: "Poppins", sans-serif;
+ }
+ header {
+   padding: 40px 20px;
+   text-align: center;
+   background: #0F766E;
+ }
+ h1 {
+   font-size: 2.4rem;
+   margin-bottom: 10px;
+ }
+ h2 {
+   margin-top: 40px;
+   color: #F2C94C;
+   border-bottom: 1px solid #0F766E;
+   padding-bottom: 10px;
+ }
+ a {
+   color: #F2C94C;
+   text-decoration: none;
+   font-weight: 600;
+ }
+ a:hover {
+   color: #ffffff;
+ }
+ section {
+   max-width: 900px;
+   margin: 40px auto;
+   padding: 20px;
+ }
+ .card {
+   background: #1E293B;
+   border-left: 4px solid #0F766E;
+   padding: 20px;
+   margin: 20px 0;
+   border-radius: 6px;
+ }
+ ul { margin-left: 20px; }
+ footer {
+   text-align: center;
+   padding: 40px 20px;
+   margin-top: 50px;
+   background: #0B1220;
+   color: #94A3B8;
+ }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧾 SI Analytics 30-Day Data Visualization Challenge — Day 24</h1>
+  <p>Restaurant Billing & Tipping Behavior Dashboard</p>
+</header>
+
+<section>
+
+<h2>📂 Dataset</h2>
+<p>
+<a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/tips.csv" target="_blank">
+tips.csv — Restaurant Bills, Tips, Demographics & Dining Patterns
+</a>
+</p>
+
+<div class="card">
+<h3>🧩 Background</h3>
+<p>
+Today’s dataset is a classic: <strong>tips.csv</strong>, widely used in analytics courses and visualization tutorials.
+It captures real restaurant billing behavior — total bill, tip given, number of diners, gender, smoking status,
+day of the week, and meal time. These variables create a rich opportunity to explore how different demographic 
+and situational factors influence tipping patterns.
+</p>
+
+<p>
+This dataset is excellent for practicing:  
+<br>✔ exploratory data analysis  
+<br>✔ categorical vs numerical relationships  
+<br>✔ statistical patterns and distributions  
+<br>✔ Seaborn-style plots (boxplots, violins, swarmplots, scatterplots)  
+<br>✔ Power BI visuals with segmentation filters  
+</p>
+</div>
+
+<div class="card">
+<h3>📄 Dataset Overview</h3>
+
+<table style="width:100%; border-collapse:collapse;">
+<tr style="background:#0F766E;">
+  <th style="padding:10px; text-align:left;">Feature</th>
+  <th style="padding:10px; text-align:left;">Description</th>
+</tr>
+
+<tr><td>Total Bill</td><td>Total cost of meal ($3 → $50)</td></tr>
+<tr><td>Tip</td><td>Tip amount ($1 → $10)</td></tr>
+<tr><td>Sex</td><td>Male or Female</td></tr>
+<tr><td>Smoker</td><td>Yes or No</td></tr>
+<tr><td>Day</td><td>Thur, Fri, Sat, Sun</td></tr>
+<tr><td>Time</td><td>Lunch or Dinner</td></tr>
+<tr><td>Size</td><td>Number of diners (1 → 6)</td></tr>
+</table>
+
+</div>
+
+<div class="card">
+<h3>🎯 Daily Task Objective</h3>
+<p>Create a comprehensive <strong>Restaurant Tipping Insights Dashboard</strong> that answers:</p>
+
+<ul>
+ <li>💵 Which factors influence higher tipping — bill size, day, or group size?</li>
+ <li>👥 Do male or female customers tip more?</li>
+ <li>🚬 Are smokers associated with higher or lower average tips?</li>
+ <li>🍽️ Does meal time (Lunch vs Dinner) affect tipping?</li>
+ <li>📊 What is the relationship between total bill and tip amount?</li>
+ <li>📈 Can you visualize tipping efficiency (tip %)?</li>
+</ul>
+
+<p>Your goal is to turn restaurant behavioral data into clear, compelling insights.</p>
+</div>
+
+<h2>🧮 Step-by-Step Instructions</h2>
+
+<div class="card">
+<h3>1️⃣ Load the Dataset</h3>
+<p><strong>R:</strong> readr::read_csv(\"tips.csv\")</p>
+<p><strong>Python:</strong> pd.read_csv(\"tips.csv\")</p>
+<p><strong>Power BI:</strong> Home → Get Data → Text/CSV → Paste GitHub raw link</p>
+</div>
+
+<div class="card">
+<h3>2️⃣ Clean & Prepare</h3>
+<ul>
+ <li>Convert total_bill and tip to numeric</li>
+ <li>Create <strong>Tip_Percentage = (Tip / Total_Bill) * 100</strong></li>
+ <li>Ensure categories (Day, Time, Sex, Smoker) are correctly labeled</li>
+ <li>Check for outliers in high tips or large party sizes</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>3️⃣ Build Your Dashboard</h3>
+
+<h4>📊 Recommended Visuals:</h4>
+<ul>
+ <li>Bar Chart — Average tip % by Day</li>
+ <li>Box Plot — Tip % by Sex or Smoker</li>
+ <li>Scatter Plot — Total Bill vs Tip (size by party size)</li>
+ <li>Donut Chart — Distribution of dining time (Lunch vs Dinner)</li>
+ <li>Clustered Column — Average total bill by day</li>
+</ul>
+
+<h4>🧩 Tools:</h4>
+<ul>
+ <li><strong>R:</strong> ggplot2 (geom_point, geom_boxplot, geom_bar)</li>
+ <li><strong>Python:</strong> Seaborn (boxplot, violinplot, stripplot, lmplot)</li>
+ <li><strong>Power BI:</strong> Cards, bar charts, scatter, matrix, slicers</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>4️⃣ Add KPI Cards</h3>
+<ul>
+ <li>💵 Average Total Bill</li>
+ <li>💰 Average Tip</li>
+ <li>📈 Average Tip %</li>
+ <li>👥 Average Party Size</li>
+ <li>🌞 % Lunch vs Dinner Meals</li>
+</ul>
+</div>
+
+<h2>🚀 Sharing Your Output</h2>
+
+<div class="card">
+<h3>📤 When finished:</h3>
+<ul>
+ <li>Post your dashboard screenshot or link on LinkedIn, X, Instagram, or Facebook.</li>
+ <li>Tag: <strong>@SIAnalyticsLab</strong> and <strong>@SIAnalytics</strong></li>
+</ul>
+
+<h4>Hashtags:</h4>
+<p>
+#SIAnalytics30DayChallenge #DataVisualization #PowerBI #RStats #Python  
+#AnalyticsForImpact #RestaurantAnalytics #Seaborn #DataStorytelling
+</p>
+</div>
+
+<div class="card">
+<h3>🗓️ Deadline</h3>
+<p>Submit your Day 24 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+<p><strong>Community Rule:</strong> Review & comment on 10 other participants’ dashboards.</p>
+</div>
+
+<footer>
+<p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+</footer>
+
+</section>
+</body>
+</html>
