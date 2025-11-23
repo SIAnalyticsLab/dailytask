@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SI Analytics 30-Day Challenge — Day 23</title>
+<style>
+ body {
+   font-family: "Inter", sans-serif;
+   margin: 0;
+   background: #0F172A;
+   color: #ffffff;
+   line-height: 1.7;
+   padding-bottom: 50px;
+ }
+ h1, h2, h3 {
+   font-family: "Poppins", sans-serif;
+ }
+ header {
+   padding: 40px 20px;
+   text-align: center;
+   background: #0F766E;
+ }
+ h1 {
+   font-size: 2.4rem;
+   margin-bottom: 10px;
+ }
+ h2 {
+   margin-top: 40px;
+   color: #F2C94C;
+   border-bottom: 1px solid #0F766E;
+   padding-bottom: 10px;
+ }
+ a {
+   color: #F2C94C;
+   text-decoration: none;
+   font-weight: 600;
+ }
+ a:hover {
+   color: #ffffff;
+ }
+ section {
+   max-width: 900px;
+   margin: 40px auto;
+   padding: 20px;
+ }
+ .card {
+   background: #1E293B;
+   border-left: 4px solid #0F766E;
+   padding: 20px;
+   margin: 20px 0;
+   border-radius: 6px;
+ }
+ ul { margin-left: 20px; }
+ table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 10px;
+ }
+ th, td {
+   padding: 10px;
+   text-align: left;
+ }
+ th {
+   background: #0F766E;
+ }
+ footer {
+   text-align: center;
+   padding: 40px 20px;
+   margin-top: 50px;
+   background: #0B1220;
+   color: #94A3B8;
+ }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>✈️ SI Analytics 30-Day Data Visualization Challenge — Day 23</h1>
+  <p>UA Passenger Traffic Analysis (1995–2020)</p>
+</header>
+
+<section>
+
+<h2>📂 Dataset</h2>
+<p>
+<a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/ua_passengers_1995-2020.csv" target="_blank">
+ua_passengers_1995-2020.csv — United Airlines Passenger Traffic (25-Year Trend)
+</a>
+</p>
+
+<div class="card">
+<h3>🧩 Background</h3>
+<p>
+Today’s dataset comes from United Airlines (UA), capturing yearly passenger volumes, flight frequency, and operating patterns 
+from <strong>1995 to 2020</strong>. This 25-year span includes major industry disruptions, global economic cycles, aviation growth periods,
+and transformative events such as the 9/11 attacks, the 2008 financial crisis, and the 2020 COVID-19 pandemic.
+</p>
+
+<p>
+This dataset is ideal for:
+<br>✔ long-term trend analysis  
+<br>✔ aviation performance benchmarking  
+<br>✔ forecasting and predictive modeling  
+<br>✔ event-impact assessment (economics, crises, policy)  
+</p>
+
+<p>
+By visualizing passenger traffic over time, analysts can uncover meaningful insights into the stability, resilience, and 
+evolution of the airline industry.
+</p>
+</div>
+
+<div class="card">
+<h3>📄 Dataset Overview</h3>
+
+<table>
+<tr>
+  <th>Variable</th>
+  <th>Description</th>
+</tr>
+
+<tr><td>Year</td><td>Calendar year (1995–2020)</td></tr>
+<tr><td>Passengers</td><td>Total passengers transported by UA</td></tr>
+<tr><td>Flights</td><td>Total number of UA flights (if included)</td></tr>
+<tr><td>Operating Metrics</td><td>Additional traffic or operational counts</td></tr>
+</table>
+
+<p>
+The dataset supports exploratory data analysis, time-series modeling, and storytelling around major aviation shifts.
+</p>
+</div>
+
+<div class="card">
+<h3>🎯 Daily Task Objective</h3>
+<p>Create an interactive <strong>UA Passenger Traffic Dashboard</strong> that answers:</p>
+
+<ul>
+ <li>📈 How have UA passenger volumes changed from 1995 to 2020?</li>
+ <li>📉 Which years show major declines—what global events explain this?</li>
+ <li>🛫 What long-term growth or decline patterns exist?</li>
+ <li>📊 How do passenger numbers compare across decades?</li>
+ <li>🔮 Can we visualize projected recovery or future passenger demand?</li>
+ <li>📉 If flight count is included, how does it relate to passenger traffic?</li>
+</ul>
+
+<p>Turn aviation operational data into a compelling story of growth, shocks, and resilience.</p>
+</div>
+
+<h2>🧮 Step-by-Step Instructions</h2>
+
+<div class="card">
+<h3>1️⃣ Load the Dataset</h3>
+<p><strong>R:</strong> readr::read_csv("ua_passengers_1995-2020.csv")</p>
+<p><strong>Python:</strong> pd.read_csv("ua_passengers_1995-2020.csv")</p>
+<p><strong>Power BI:</strong> Home → Get Data → Text/CSV → Paste GitHub raw link</p>
+</div>
+
+<div class="card">
+<h3>2️⃣ Clean & Prepare</h3>
+<ul>
+ <li>Convert year, passenger counts, and flight counts to numeric</li>
+ <li>Check for anomalies caused by shocks (e.g., 2001, 2008, 2020)</li>
+ <li>Create additional fields:
+    <ul>
+      <li><strong>YoY_Change = (Passengers - lag(Passengers)) / lag(Passengers)</strong></li>
+      <li><strong>Decade = floor(Year/10)*10</strong></li>
+    </ul>
+ </li>
+ <li>Identify peaks, troughs, and structural breaks</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>3️⃣ Build Your Dashboard</h3>
+
+<h4>📊 Recommended Visuals</h4>
+<ul>
+ <li>Line Chart — Passenger traffic trend (1995–2020)</li>
+ <li>Area Chart — Cumulative growth over time</li>
+ <li>Column Chart — Passengers by decade</li>
+ <li>Scatter Plot — Flights vs Passengers (if flights available)</li>
+ <li>Bar Chart — Top 5 highest and lowest traffic years</li>
+ <li>YoY Change Plot — Highlight periods of decline</li>
+</ul>
+
+<h4>🧩 Tools</h4>
+<ul>
+ <li><strong>R:</strong> ggplot2 (geom_line, geom_area, geom_col)</li>
+ <li><strong>Python:</strong> matplotlib / seaborn (lineplot, barplot, regplot)</li>
+ <li><strong>Power BI:</strong> Line charts, bar charts, decomposition tree, forecasting tools</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>4️⃣ Add KPI Cards</h3>
+<ul>
+ <li>✈️ Total Passengers (sum)</li>
+ <li>📈 Highest Traffic Year</li>
+ <li>📉 Lowest Traffic Year</li>
+ <li>🔼 Best YoY Growth</li>
+ <li>🔽 Worst YoY Decline</li>
+</ul>
+</div>
+
+<h2>🚀 Sharing Your Output</h2>
+
+<div class="card">
+<h3>📤 When finished:</h3>
+<ul>
+ <li>Post your dashboard screenshot or link on LinkedIn, X, Instagram, or Facebook.</li>
+ <li>Tag: <strong>@SIAnalyticsLab</strong> and <strong>@SIAnalytics</strong></li>
+</ul>
+
+<h4>Hashtags:</h4>
+<p>
+#SIAnalytics30DayChallenge #AviationAnalytics #PowerBI #RStats #Python  
+#DataVisualization #UAtraffic #AirlineIndustry #AnalyticsForImpact #DataStorytelling
+</p>
+</div>
+
+<div class="card">
+<h3>🗓️ Deadline</h3>
+<p>Submit your Day 23 dashboard by <strong>11:59 PM (local time)</strong> today.</p>
+<p><strong>Community Rule:</strong> Review & comment on at least 10 other participants’ dashboards.</p>
+</div>
+
+<footer>
+<p>© 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.</p>
+</footer>
+
+</section>
+
+</body>
+</html>
