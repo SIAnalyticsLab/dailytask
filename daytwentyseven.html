@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SI Analytics – Day 27 | Tuberculosis Burden Dashboard</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        margin: 0;
+        background: #f8fafc;
+        color: #0f172a;
+        line-height: 1.6;
+    }
+
+    /* Header Banner */
+    .header {
+        background: #0F766E;
+        padding: 35px 20px;
+        text-align: center;
+        color: white;
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .sub-header {
+        background: #14b8a6;
+        padding: 10px 20px;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    /* Layout container */
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 40px auto;
+    }
+
+    /* Section styling */
+    h2 {
+        color: #0F766E;
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Cards */
+    .card {
+        background: #ffffff;
+        padding: 20px 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+        margin-top: 20px;
+    }
+
+    /* Table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    table th {
+        background: #e2f3f1;
+        padding: 10px;
+        text-align: left;
+    }
+
+    table td {
+        padding: 10px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        margin: 50px 0 30px;
+        color: #475569;
+        font-size: 14px;
+    }
+
+    a {
+        color: #0F766E;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">SI Analytics 30-Day Data Visualization Challenge</div>
+<div class="sub-header">Day 27 — Tuberculosis Burden by Country Dashboard</div>
+
+<div class="container">
+
+    <!-- Background -->
+    <h2>📘 Background</h2>
+    <div class="card">
+        <p>
+            Tuberculosis (TB) remains one of the world’s deadliest infectious diseases, 
+            particularly affecting low- and middle-income countries. Today’s challenge 
+            uses country-level TB burden data compiled from the 
+            <strong>World Health Organization (WHO)</strong).
+        </p>
+
+        <p>
+            The dataset includes TB prevalence, incidence, and mortality rates reported 
+            across global regions — enabling analysts to explore spatial burden, 
+            high-risk countries, and patterns that inform global health interventions.
+        </p>
+
+        <p>
+            This task is ideal for dashboards focusing on epidemiology, disease 
+            surveillance, global health intelligence, and SDG-aligned reporting.
+        </p>
+    </div>
+
+    <!-- Dataset -->
+    <h2>📂 Dataset</h2>
+    <div class="card">
+        <p><strong>Dataset link:</strong> 
+            <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/TB_Burden_Country.csv" target="_blank">
+                TB_Burden_Country.csv
+            </a>
+        </p>
+
+        <p>The dataset contains the following fields:</p>
+
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>Country name</td>
+            </tr>
+            <tr>
+                <td>Year</td>
+                <td>Reporting year</td>
+            </tr>
+            <tr>
+                <td>TB_Cases</td>
+                <td>Estimated number of TB cases</td>
+            </tr>
+            <tr>
+                <td>TB_Deaths</td>
+                <td>Total deaths attributed to TB</td>
+            </tr>
+            <tr>
+                <td>TB_Incidence_Rate</td>
+                <td>Incidence per 100,000 population</td>
+            </tr>
+            <tr>
+                <td>TB_Mortality_Rate</td>
+                <td>Mortality per 100,000 population</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Objective -->
+    <h2>🎯 Objective</h2>
+    <div class="card">
+        <p>Create a <strong>Tuberculosis Burden Analytics Dashboard</strong> that answers:</p>
+
+        <ul>
+            <li>📊 Which countries have the highest TB incidence and mortality rates?</li>
+            <li>🌍 How is TB burden distributed across global regions?</li>
+            <li>📉 What countries show declining or rising TB trends?</li>
+            <li>💀 Which countries carry the largest mortality burden per capita?</li>
+            <li>🔍 Are incidence and mortality correlated across countries?</li>
+        </ul>
+    </div>
+
+    <!-- Steps -->
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <div class="card">
+        <ol>
+            <li><strong>Load</strong> the dataset into Power BI, R, or Python.</li>
+            <li><strong>Clean and prepare</strong>:
+                <ul>
+                    <li>Ensure standardized country names</li>
+                    <li>Convert numeric fields as needed</li>
+                    <li>Create derived indicators:
+                        <ul>
+                            <li><strong>TB_Cases_per_100k</strong></li>
+                            <li><strong>TB_Deaths_per_100k</strong></li>
+                            <li><strong>Mortality-to-Incidence Ratio</strong></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Build recommended visuals</strong>:
+                <ul>
+                    <li>🌍 Map — TB Incidence Rate per 100,000</li>
+                    <li>📈 Line chart — TB trends over time</li>
+                    <li>📊 Bar chart — Top 20 countries by TB deaths</li>
+                    <li>🧩 Scatter plot — Incidence vs Mortality</li>
+                    <li>🧾 Table — High-burden countries</li>
+                </ul>
+            </li>
+            <li><strong>Add KPIs</strong>:
+                <ul>
+                    <li>Total TB Cases</li>
+                    <li>Total TB Deaths</li>
+                    <li>Highest Incidence Country</li>
+                    <li>Highest Mortality Rate</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Sharing -->
+    <h2>🚀 Sharing Your Output</h2>
+    <div class="card">
+        <p>When finished, share your dashboard across platforms like:</p>
+        <ul>
+            <li>LinkedIn</li>
+            <li>X (Twitter)</li>
+            <li>Instagram</li>
+            <li>Facebook</li>
+        </ul>
+
+        <p>Tag:</p>
+        <p><strong>@SIAnalyticsLab</strong> &nbsp; <strong>@SIAnalytics</strong></p>
+
+        <p>Use hashtags:</p>
+        <p>
+            #SIAnalytics30DayChallenge #PublicHealthAnalytics #PowerBI #RStats #Python  
+            #Tuberculosis #Epidemiology #GlobalHealth #AnalyticsForImpact #DataStorytelling
+        </p>
+    </div>
+
+    <!-- Example Caption -->
+    <h2>💬 Example LinkedIn Caption</h2>
+    <div class="card">
+        <p>
+            <em>
+            “Day 27 of the #SIAnalytics30DayChallenge 🌍  
+            Built a Tuberculosis Burden Dashboard using WHO country-level data.  
+            The analysis reveals striking variations in TB incidence and mortality across regions, 
+            underscoring the need for targeted investments and disease surveillance.  
+            Data-driven insights help shape global TB response priorities.” 
+            </em>
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.
+</footer>
+
+</body>
+</html>
