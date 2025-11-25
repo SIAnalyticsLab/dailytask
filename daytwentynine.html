@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI Analytics 30-Day Data Visualization Challenge — Day 29</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styling -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.65;
+            color: #0F172A;
+        }
+
+        header {
+            background: #0F766E;
+            color: white;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.15rem;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        h2.section-title {
+            color: #0F766E;
+            margin-top: 50px;
+            font-size: 1.7rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p, li {
+            font-size: 1.05rem;
+        }
+
+        .dataset-box {
+            background: #ECFDF5;
+            border-left: 6px solid #0F766E;
+            padding: 18px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        code {
+            background: #F1F5F9;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #0F766E;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 25px;
+            text-align: center;
+            background: #F8FAFC;
+            color: #475569;
+        }
+
+        @media(max-width: 600px) {
+            header h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>SI Analytics 30-Day Data Visualization Challenge — Day 29</h1>
+    <p style="margin-top:10px; font-size:1.1rem;">Bank Marketing Analytics — Predicting Term Deposit Subscriptions</p>
+</header>
+
+<div class="container">
+
+    <!-- Background -->
+    <h2 class="section-title">📘 Background</h2>
+    <p>
+        Today’s dataset takes us into the world of <strong>financial marketing analytics</strong>. 
+        Banks run recurring telemarketing campaigns to encourage customers to subscribe to term deposits. 
+        But which customers are most likely to say yes?
+    </p>
+
+    <p>
+        In Day 29, you will analyze the <strong>Bank Marketing Dataset</strong>, originally used in the 
+        influential 2014 research paper:
+        <br><em>“A Data-Driven Approach to Predict the Success of Bank Telemarketing” — Moro, Cortez & Rita (2014)</em>.
+    </p>
+
+    <p>
+        Your task is to explore patterns in demographics, call attributes, and prior marketing interactions 
+        to visualize and predict which profiles are more likely to subscribe. 
+    </p>
+
+    <!-- Dataset -->
+    <h2 class="section-title">📂 Dataset</h2>
+
+    <div class="dataset-box">
+        <strong>bank.xlsx</strong><br><br>
+        <ul>
+            <li><strong>age</strong> — Customer age</li>
+            <li><strong>job</strong> — Occupation category</li>
+            <li><strong>marital</strong> — Marital status</li>
+            <li><strong>education</strong></li>
+            <li><strong>default</strong> — Has credit default?</li>
+            <li><strong>balance</strong> — Account balance</li>
+            <li><strong>housing</strong> — Housing loan?</li>
+            <li><strong>loan</strong> — Personal loan?</li>
+            <li><strong>contact</strong> — Contact communication type</li>
+            <li><strong>duration</strong> — Last contact duration in seconds</li>
+            <li><strong>pdays</strong> — Days passed since last contact</li>
+            <li><strong>previous</strong> — Count of previous contacts</li>
+            <li><strong>poutcome</strong> — Outcome of previous marketing campaign</li>
+            <li><strong>y</strong> — Did the client subscribe to a term deposit? (Yes/No)</li>
+        </ul>
+
+        <a class="btn" href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/bank.xlsx" target="_blank">
+            📥 Download Dataset
+        </a>
+    </div>
+
+    <!-- Objective -->
+    <h2 class="section-title">🎯 Objective</h2>
+    <p>
+        Build a <strong>Bank Marketing Insights Dashboard</strong> that answers:
+    </p>
+    <ul>
+        <li>📊 Which customer groups show the highest term deposit subscription rates?</li>
+        <li>📞 How does call duration influence subscription outcomes?</li>
+        <li>👥 How do demographic variables (age, education, job) shape customer response?</li>
+        <li>📈 What prior campaign variables predict a successful conversion?</li>
+        <li>💡 Can we identify segments with high potential for future marketing strategies?</li>
+    </ul>
+
+    <!-- Step by Step -->
+    <h2 class="section-title">🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load the Dataset</h3>
+    <pre><code>R: readxl::read_excel("bank.xlsx")
+Python: pd.read_excel("bank.xlsx")
+Power BI: Home → Get Data → Excel Workbook</code></pre>
+
+    <h3>2️⃣ Clean & Prepare Data</h3>
+    <ul>
+        <li>Convert <code>duration</code>, <code>balance</code>, and <code>previous</code> to numeric.</li>
+        <li>Create <strong>Subscription Binary</strong>: Yes = 1, No = 0.</li>
+        <li>Group age into cohorts: <em>young, middle-aged, senior</em>.</li>
+        <li>Label missing or special values in <code>pdays</code>.</li>
+        <li>Format categorical variables for visual segmentation.</li>
+    </ul>
+
+    <h3>3️⃣ Build Your Dashboard (Recommended Visuals)</h3>
+    <ul>
+        <li>💵 KPI — Total Customers Contacted</li>
+        <li>📈 KPI — Subscription Rate (%)</li>
+        <li>📊 Bar Chart — Subscription by Job Category</li>
+        <li>🍰 Donut Chart — Subscription by Education Level</li>
+        <li>📞 Scatter Plot — Duration vs Subscription Outcome</li>
+        <li>📉 Column Chart — Effect of Previous Campaign Outcome</li>
+        <li>🧾 Table — Top Predictors by Segment</li>
+    </ul>
+
+    <h3>4️⃣ Add KPI Cards</h3>
+    <ul>
+        <li>👥 Total Contacts</li>
+        <li>✔️ Total Subscriptions</li>
+        <li>📈 Subscription Rate (%)</li>
+        <li>⏳ Average Call Duration</li>
+        <li>📞 Calls with Previous Success</li>
+    </ul>
+
+    <!-- Share -->
+    <h2 class="section-title">🚀 Sharing Your Output</h2>
+    <p>
+        Share your dashboard on LinkedIn or X with screenshots. Tag:
+        <br>
+        <strong>@SIAnalyticsLab</strong> · <strong>@SIAnalytics</strong>
+    </p>
+    <p>
+        Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #BankMarketing #PredictiveAnalytics #PowerBI #RStats #Python #CustomerSegmentation #AnalyticsForImpact #DataStorytelling</code>
+    </p>
+
+    <h2 class="section-title">🗓️ Deadline</h2>
+    <p>
+        Submit your Day 29 dashboard by <strong>11:59 PM (local time)</strong> today.
+    </p>
+
+</div>
+
+<footer>
+    © 2025 Strategic Insights & Analytics (SI Analytics). All Rights Reserved.
+</footer>
+
+</body>
+</html>
