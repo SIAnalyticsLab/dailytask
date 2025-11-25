@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SI Analytics | Day 25 – Health & Population Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0F172A;
+      color: #ffffff;
+      line-height: 1.7;
+    }
+
+    header {
+      background: #0F766E;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: "Poppins", sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    section {
+      max-width: 950px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #F2C94C;
+      border-bottom: 1px solid #0F766E;
+      padding-bottom: 8px;
+      margin-top: 40px;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .card {
+      background: #1E293B;
+      border-left: 4px solid #0F766E;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    a {
+      color: #F2C94C;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffffff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th {
+      background: #0F766E;
+      padding: 10px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #334155;
+    }
+
+    footer {
+      text-align: center;
+      padding: 45px 20px;
+      margin-top: 80px;
+      background: #0B1220;
+      font-size: 0.9rem;
+      color: #94A3B8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🌍 Day 25 — Health & Population Analytics Dashboard</h1>
+    <p>SI Analytics 30-Day Data Visualization Challenge</p>
+  </header>
+
+  <section>
+
+    <h2>📂 Datasets</h2>
+
+    <p><a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/recent_pop_data.csv" target="_blank">
+        recent_pop_data.csv — Population by African country
+      </a></p>
+
+    <p><a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/covid19_africa.csv" target="_blank">
+        covid19_africa.csv — COVID-19 cases and deaths
+      </a></p>
+
+    <p><a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/malaria.csv" target="_blank">
+        malaria.csv — Reported malaria cases and mortality
+      </a></p>
+
+    <div class="card">
+      <h3>🧩 Background</h3>
+      <p>
+        Public health outcomes in Africa are influenced by population dynamics, disease burden, and the capacity of health systems. Today's
+        integrated dataset merges recent population estimates with COVID-19 and malaria statistics, enabling a multi-layered look at
+        demographic vulnerability, infection patterns, and mortality across African countries.
+      </p>
+
+      <p>
+        With these datasets, analysts can study how population size, density, and growth shape infectious disease outcomes and build
+        visualizations that support equity-driven public health planning.
+      </p>
+    </div>
+
+    <h2>📄 Dataset Overview</h2>
+
+    <table>
+      <tr>
+        <th>Dataset</th>
+        <th>Key Variables</th>
+        <th>Description</th>
+      </tr>
+
+      <tr>
+        <td>recent_pop_data.csv</td>
+        <td>Country, Year, Population, GrowthRate</td>
+        <td>Population estimates & national growth trends</td>
+      </tr>
+
+      <tr>
+        <td>covid19_africa.csv</td>
+        <td>Country, Cases, Deaths, Recovered, Date</td>
+        <td>COVID-19 cumulative and daily reports</td>
+      </tr>
+
+      <tr>
+        <td>malaria.csv</td>
+        <td>Country, Year, Malaria_Cases, Malaria_Deaths</td>
+        <td>Reported malaria burden and mortality</td>
+      </tr>
+    </table>
+
+    <div class="card">
+      <p>💡 Together, these datasets reveal disease burden per capita, health system strain, and demographic risk.</p>
+    </div>
+
+    <h2>🎯 Daily Task Objective</h2>
+
+    <div class="card">
+      <p>Create a <strong>Health & Population Analytics Dashboard</strong> that answers:</p>
+      <ul>
+        <li>📊 How do population size and growth correlate with COVID-19 and malaria burden?</li>
+        <li>💀 Which countries have the highest disease-related mortality?</li>
+        <li>🧭 How do COVID-19 cases compare to malaria cases across regions?</li>
+        <li>📈 What is the disease burden per 100,000 population?</li>
+        <li>🌍 How can public health investments be prioritized across Africa?</li>
+      </ul>
+      <p>Your goal: turn demographic and disease data into evidence for public health planning.</p>
+    </div>
+
+    <h2>🧮 Step-by-Step Instructions</h2>
+
+    <div class="card">
+      <h3>1️⃣ Load and Merge Datasets</h3>
+      <p>Use <strong>Country</strong> as the key for merging.</p>
+      <ul>
+        <li><strong>R:</strong> readr::read_csv()</li>
+        <li><strong>Python:</strong> pd.read_csv(), pd.merge()</li>
+        <li><strong>Power BI:</strong> Load CSVs → Model view → Create relationships</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>2️⃣ Clean & Prepare</h3>
+      <ul>
+        <li>Ensure consistent country naming</li>
+        <li>Create indicators: Cases_per_100k, Malaria_per_100k, Mortality_Rate</li>
+        <li>Filter recent year available in all datasets</li>
+        <li>Add regional groupings (West, East, Central, Southern, North Africa)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>3️⃣ Build Your Dashboard</h3>
+      <ul>
+        <li>🌍 Map — Disease burden per 100k</li>
+        <li>📈 Dual Axis — Population vs Total Disease Cases</li>
+        <li>💀 Column — COVID-19 vs Malaria deaths</li>
+        <li>🧩 Bubble Chart — Growth Rate vs Disease Burden</li>
+        <li>📊 Tree Map — Cases by subregion</li>
+        <li>🧾 Table — Top 10 countries with highest mortality</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>4️⃣ Add KPI Cards</h3>
+      <ul>
+        <li>🌍 Total Population</li>
+        <li>🦠 Total COVID-19 Cases</li>
+        <li>🦟 Total Malaria Cases</li>
+        <li>💀 Combined Mortality Rate</li>
+        <li>📈 Average Population Growth Rate</li>
+      </ul>
+    </div>
+
+    <h2>🚀 Sharing Your Output</h2>
+
+    <div class="card">
+      <p>When finished, post your dashboard online and tag <strong>@SIAnalyticsLab</strong> or <strong>@SIAnalytics</strong>.</p>
+      <p>Use hashtags:<br>
+        #SIAnalytics30DayChallenge #PublicHealthAnalytics #DataVisualization #PowerBI #RStats #Python #Epidemiology #PopulationHealth #AnalyticsForImpact #DataStorytelling
+      </p>
+    </div>
+
+    <h2>🗓️ Deadline</h2>
+    <div class="card">
+      Submit your Day 25 dashboard by <strong>11:59 PM</strong> (local time).
+      <br><br>
+      <strong>Community Rule:</strong> Review and comment on at least <strong>10 dashboards</strong> — highlight one powerful public health insight.
+    </div>
+
+  </section>
+
+  <footer>
+    © 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.
+  </footer>
+
+</body>
+
+</html>
