@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI Analytics 30-Day Data Visualization Challenge — Day 28</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styling -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.65;
+            color: #0F172A;
+        }
+
+        header {
+            background: #0F766E;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        h2.section-title {
+            color: #0F766E;
+            margin-top: 50px;
+            font-size: 1.7rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p, li {
+            font-size: 1.05rem;
+        }
+
+        .dataset-box {
+            background: #ECFDF5;
+            border-left: 6px solid #0F766E;
+            padding: 18px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        code {
+            background: #F1F5F9;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #0F766E;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 25px;
+            text-align: center;
+            background: #F8FAFC;
+            color: #475569;
+        }
+
+        @media(max-width: 600px) {
+            header h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>SI Analytics 30-Day Data Visualization Challenge — Day 28</h1>
+    <p style="margin-top:10px; font-size:1.1rem;">Sample Sales Performance Analysis Dashboard</p>
+</header>
+
+<div class="container">
+
+    <!-- Background -->
+    <h2 class="section-title">📘 Background</h2>
+    <p>
+        In Day 28, you will explore <strong>Sample Sales Data</strong> containing multi-country, 
+        multi-product transaction records. This dataset mimics real-world commercial analytics datasets 
+        used in retail, FMCG, supply chain, and financial modeling.
+    </p>
+    <p>
+        It includes sales units, product categories, discounts, gross sales, profits, and time-based segmentation 
+        — making it ideal for building KPI dashboards, revenue trend reports, and customer segmentation visuals.
+    </p>
+
+    <!-- Dataset -->
+    <h2 class="section-title">📂 Dataset</h2>
+
+    <div class="dataset-box">
+        <strong>Sample sales data.xlsx:</strong><br><br>
+        <ul>
+            <li><strong>Country</strong> — Market location</li>
+            <li><strong>Product</strong> — Item category</li>
+            <li><strong>Units Sold</strong> — Quantity sold</li>
+            <li><strong>Manufacturing Price / Sale Price</strong></li>
+            <li><strong>Gross Sales</strong> — Quantity × Sale Price</li>
+            <li><strong>Discount</strong> — Applied price discount</li>
+            <li><strong>COGS</strong> — Cost of Goods Sold</li>
+            <li><strong>Profit</strong> — Net revenue after COGS</li>
+            <li><strong>Date / Month / Year</strong> — Period for analysis</li>
+        </ul>
+
+        <a class="btn" href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/Sample%20sales%20data.xlsx" target="_blank">
+            📥 Download Dataset
+        </a>
+    </div>
+
+    <!-- Objective -->
+    <h2 class="section-title">🎯 Objective</h2>
+    <p>
+        Build a <strong>Sales Performance Dashboard</strong> that answers:
+    </p>
+    <ul>
+        <li>📈 Which countries generate the highest total sales?</li>
+        <li>💰 What products have the highest revenue and profit margins?</li>
+        <li>📊 How do discounts affect gross sales and net profit?</li>
+        <li>🗓️ What are the monthly sales trends across regions?</li>
+        <li>🛒 Which segments (e.g., government, small business) contribute most?</li>
+    </ul>
+
+    <!-- Step by Step -->
+    <h2 class="section-title">🧮 Step-by-Step Instructions</h2>
+
+    <h3>1️⃣ Load the Dataset</h3>
+    <pre><code>R: readxl::read_excel("Sample sales data.xlsx")
+Python: pd.read_excel("Sample sales data.xlsx")
+Power BI: Home → Get Data → Excel Workbook</code></pre>
+
+    <h3>2️⃣ Clean & Prepare Data</h3>
+    <ul>
+        <li>Convert <code>Units Sold</code>, <code>Gross Sales</code>, <code>Profit</code> to numeric</li>
+        <li>Create <strong>Total Revenue</strong>, <strong>Discount %</strong>, and <strong>Profit Margin</strong> measures</li>
+        <li>Extract <code>Year</code> and <code>Month</code> from <code>Date</code></li>
+        <li>Ensure product categories are correctly grouped</li>
+    </ul>
+
+    <h3>3️⃣ Build Dashboard (Recommended Visuals)</h3>
+    <ul>
+        <li>💵 KPI — Total Sales, Total Profit, Avg Discount, Units Sold</li>
+        <li>📈 Line Chart — Monthly Sales Trend</li>
+        <li>🌍 Bar Chart — Sales by Country</li>
+        <li>📊 Treemap — Revenue by Product Category</li>
+        <li>📉 Scatter Plot — Discount vs Profit</li>
+        <li>🧾 Table — Profitability by Product</li>
+    </ul>
+
+    <h3>4️⃣ Add KPI Cards</h3>
+    <ul>
+        <li>💰 Total Revenue</li>
+        <li>📈 Total Units Sold</li>
+        <li>💵 Net Profit</li>
+        <li>🔻 Average Discount %</li>
+        <li>🛒 Total Transactions</li>
+    </ul>
+
+    <!-- Share -->
+    <h2 class="section-title">🚀 Sharing Your Output</h2>
+    <p>
+        Share your dashboard on LinkedIn or X with screenshots. Tag:
+        <br>
+        <strong>@SIAnalyticsLab</strong> · <strong>@SIAnalytics</strong>
+    </p>
+    <p>
+        Include hashtags:<br>
+        <code>#SIAnalytics30DayChallenge #SalesAnalytics #DataVisualization #PowerBI #RStats #Python #AnalyticsForImpact #DataStorytelling</code>
+    </p>
+
+    <h2 class="section-title">🗓️ Deadline</h2>
+    <p>
+        Submit your Day 28 dashboard by <strong>11:59 PM (local time)</strong> today.
+    </p>
+
+</div>
+
+<footer>
+    © 2025 Strategic Insights & Analytics (SI Analytics). All Rights Reserved.
+</footer>
+
+</body>
+</html>
