@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SI Analytics – Day 26 | Global Burden of Disease Dashboard</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        margin: 0;
+        background: #f8fafc;
+        color: #0f172a;
+        line-height: 1.6;
+    }
+
+    /* Header Banner */
+    .header {
+        background: #0F766E;
+        padding: 35px 20px;
+        text-align: center;
+        color: white;
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .sub-header {
+        background: #14b8a6;
+        padding: 10px 20px;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    /* Layout container */
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 40px auto;
+    }
+
+    /* Section styling */
+    h2 {
+        color: #0F766E;
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .card {
+        background: #ffffff;
+        padding: 20px 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+        margin-top: 20px;
+    }
+
+    /* Dataset table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    table th {
+        text-align: left;
+        background: #e2f3f1;
+        padding: 10px;
+    }
+
+    table td {
+        padding: 10px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        margin: 50px 0 30px;
+        color: #475569;
+        font-size: 14px;
+    }
+
+    a {
+        color: #0F766E;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">SI Analytics 30-Day Data Visualization Challenge</div>
+<div class="sub-header">Day 26 — Global Burden of Disease Dashboard</div>
+
+<div class="container">
+
+    <!-- Background -->
+    <h2>📘 Background</h2>
+    <div class="card">
+        <p>
+            Today’s challenge explores one of the most influential global datasets in public health —
+            the <strong>Global Burden of Disease (GBD)</strong), produced by the 
+            <strong>Institute for Health Metrics and Evaluation (IHME)</strong). 
+        </p>
+        <p>
+            The GBD framework estimates the burden of diseases, injuries, and risk factors worldwide 
+            and across 21 global regions. For this challenge, you will analyze the 
+            <strong>IHME_GBD_1970_2010.csv</strong> dataset, which covers metrics from the years 
+            <strong>1970 to 2010</strong>.
+        </p>
+        <p>
+            This dataset is widely used for global health planning, policy development, and research. 
+            It helps analysts understand mortality, morbidity, disability, and risk exposure patterns 
+            across populations and over time.
+        </p>
+    </div>
+
+    <!-- Dataset -->
+    <h2>📂 Dataset</h2>
+    <div class="card">
+        <p><strong>Dataset link:</strong> 
+            <a href="https://github.com/SIAnalyticsLab/30daychallengeguide/blob/main/IHME_GBD__1970_2010.csv" target="_blank">
+                IHME_GBD_1970_2010.csv
+            </a>
+        </p>
+
+        <p>This dataset contains:</p>
+        <table>
+            <tr>
+                <th>Key Variables</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Country / Region</td>
+                <td>Name of country or world region</td>
+            </tr>
+            <tr>
+                <td>Year</td>
+                <td>1970–2010</td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>Disease or injury category</td>
+            </tr>
+            <tr>
+                <td>Deaths</td>
+                <td>Total estimated deaths</td>
+            </tr>
+            <tr>
+                <td>DALYs</td>
+                <td>Disability-Adjusted Life Years — core measure of disease burden</td>
+            </tr>
+            <tr>
+                <td>YLLs / YLDs</td>
+                <td>Years of Life Lost & Years Lived with Disability</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Objective -->
+    <h2>🎯 Objective</h2>
+    <div class="card">
+        <p>Create a <strong>Global Burden of Disease Dashboard</strong> that answers:</p>
+
+        <ul>
+            <li>📉 Which diseases contribute most to global mortality?</li>
+            <li>📈 How has the global burden changed between 1970 and 2010?</li>
+            <li>🌍 Which regions carry the highest burden of disease?</li>
+            <li>🔍 What are the top causes of DALYs for selected years?</li>
+            <li>🧭 Which countries show the strongest improvements or deterioration?</li>
+        </ul>
+    </div>
+
+    <!-- Steps -->
+    <h2>🧮 Step-by-Step Instructions</h2>
+    <div class="card">
+        <ol>
+            <li><strong>Load the dataset</strong> into Power BI, R, or Python.</li>
+            <li>Clean and standardize country and region names.</li>
+            <li>Create indicators:
+                <ul>
+                    <li><strong>Deaths_per_100k</strong> = Deaths / Population * 100,000 (if population data added)</li>
+                    <li><strong>DALY_Ratio</strong> = DALYs / Deaths</li>
+                    <li><strong>Top Causes per Region</strong></li>
+                </ul>
+            </li>
+            <li>Build visuals:
+                <ul>
+                    <li>🌍 Map — DALYs or Deaths by region</li>
+                    <li>📉 Line chart — Time trends for top causes</li>
+                    <li>📊 Bar chart — Leading causes of death (for a selected year)</li>
+                    <li>🧩 Scatter plot — DALYs vs Deaths</li>
+                </ul>
+            </li>
+            <li>Add KPI cards:
+                <ul>
+                    <li>Total Global Deaths</li>
+                    <li>Total DALYs</li>
+                    <li>Top Cause (global)</li>
+                    <li>Region with Highest Burden</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Share -->
+    <h2>🚀 Sharing Your Output</h2>
+    <div class="card">
+        <p>When finished, post your dashboard screenshot or link on:</p>
+        <ul>
+            <li>LinkedIn</li>
+            <li>X (Twitter)</li>
+            <li>Instagram</li>
+            <li>Facebook</li>
+        </ul>
+
+        <p>Tag:</p>
+        <p>
+            <strong>@SIAnalyticsLab</strong> &nbsp;&nbsp; 
+            <strong>@SIAnalytics</strong>
+        </p>
+
+        <p>Include hashtags:</p>
+        <p>
+            #SIAnalytics30DayChallenge #GlobalHealthAnalytics #PowerBI #RStats #Python 
+            #GBD #Epidemiology #AnalyticsForImpact #DataStorytelling
+        </p>
+    </div>
+
+    <!-- Example Caption -->
+    <h2>💬 Example LinkedIn Caption</h2>
+    <div class="card">
+        <p>
+            <em>
+            “Day 26 of the #SIAnalytics30DayChallenge 🌍  
+            Built a Global Burden of Disease dashboard exploring changes in mortality and disability-adjusted life years between 1970 and 2010.  
+            Insights highlight the rise of non-communicable diseases, regional disparities, and shifting epidemiological profiles.  
+            Turning data into evidence for better global health decisions.”  
+            </em>
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 Strategic Insights and Analytics (SI Analytics). All Rights Reserved.
+</footer>
+
+</body>
+</html>
